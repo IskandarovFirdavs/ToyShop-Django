@@ -1,0 +1,515 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block title %}Product Details{% endblock %}
+{% block content %}
+<!-- Product Details Section -->
+<section class="section">
+  <div class="container">
+    <div class="breadcrumbs" style="margin-bottom: 20px">
+      <a
+        href="home.html"
+        style="text-decoration: none; color: var(--text-light)"
+        >Home</a
+      >
+      <span style="margin: 0 10px; color: var(--text-light)">/</span>
+      <a
+        href="shop.html"
+        style="text-decoration: none; color: var(--text-light)"
+        >Shop</a
+      >
+      <span style="margin: 0 10px; color: var(--text-light)">/</span>
+      <span>Interactive Robot</span>
+    </div>
+
+    <div
+      class="product-details"
+      style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px"
+    >
+      <!-- Product Images -->
+      <div class="product-images">
+        <div
+          class="main-image"
+          style="
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-color);
+          "
+        >
+          <img
+            src="/placeholder.svg?height=400&width=500"
+            alt="Interactive Robot"
+            style="width: 100%; height: auto"
+          />
+        </div>
+        <div class="image-thumbnails" style="display: flex; gap: 10px">
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 5px;
+              overflow: hidden;
+              cursor: pointer;
+              border: 2px solid var(--primary-color);
+            "
+          >
+            <img
+              src="/placeholder.svg?height=80&width=80"
+              alt="Thumbnail 1"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 5px;
+              overflow: hidden;
+              cursor: pointer;
+            "
+          >
+            <img
+              src="/placeholder.svg?height=80&width=80"
+              alt="Thumbnail 2"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 5px;
+              overflow: hidden;
+              cursor: pointer;
+            "
+          >
+            <img
+              src="/placeholder.svg?height=80&width=80"
+              alt="Thumbnail 3"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              border-radius: 5px;
+              overflow: hidden;
+              cursor: pointer;
+            "
+          >
+            <img
+              src="/placeholder.svg?height=80&width=80"
+              alt="Thumbnail 4"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="product-info">
+        <h1 style="font-size: 2rem; margin-bottom: 10px">Interactive Robot</h1>
+        <div
+          class="product-rating"
+          style="display: flex; align-items: center; margin-bottom: 15px"
+        >
+          <div style="display: flex; color: #ffd700; margin-right: 10px">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+          </div>
+          <span style="color: var(--text-light)">4.5 (24 reviews)</span>
+        </div>
+        <div
+          class="product-price"
+          style="
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+          "
+        >
+          $29.99
+        </div>
+        <div
+          class="product-description"
+          style="margin-bottom: 30px; color: var(--text-light)"
+        >
+          <p>
+            This interactive robot is designed to help children learn
+            programming concepts through play. With voice command recognition
+            and programmable movements, it provides hours of educational
+            entertainment.
+          </p>
+          <ul style="list-style-position: inside; margin-top: 15px">
+            <li>Voice command recognition</li>
+            <li>Programmable movements</li>
+            <li>LED display for facial expressions</li>
+            <li>Rechargeable battery (included)</li>
+            <li>Compatible with our mobile app</li>
+          </ul>
+        </div>
+        <div class="product-meta" style="margin-bottom: 30px">
+          <div style="display: flex; margin-bottom: 10px">
+            <span style="width: 100px; font-weight: 500">SKU:</span>
+            <span style="color: var(--text-light)">ROB-1234</span>
+          </div>
+          <div style="display: flex; margin-bottom: 10px">
+            <span style="width: 100px; font-weight: 500">Category:</span>
+            <span style="color: var(--text-light)">Educational Toys</span>
+          </div>
+          <div style="display: flex; margin-bottom: 10px">
+            <span style="width: 100px; font-weight: 500">Age Range:</span>
+            <span style="color: var(--text-light)">6-12 years</span>
+          </div>
+          <div style="display: flex; margin-bottom: 10px">
+            <span style="width: 100px; font-weight: 500">Availability:</span>
+            <span style="color: #2ecc71">In Stock (15 items)</span>
+          </div>
+        </div>
+        <div
+          class="product-actions"
+          style="display: flex; flex-direction: column; gap: 15px"
+        >
+          <div
+            class="quantity-selector"
+            style="display: flex; align-items: center"
+          >
+            <span style="margin-right: 15px; font-weight: 500">Quantity:</span>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                border: 1px solid var(--border-color);
+                border-radius: 5px;
+                overflow: hidden;
+              "
+            >
+              <button
+                style="
+                  width: 40px;
+                  height: 40px;
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  font-size: 1rem;
+                "
+              >
+                -
+              </button>
+              <input
+                type="number"
+                value="1"
+                min="1"
+                style="
+                  width: 50px;
+                  height: 40px;
+                  border: none;
+                  text-align: center;
+                  font-family: 'Quicksand', sans-serif;
+                "
+              />
+              <button
+                style="
+                  width: 40px;
+                  height: 40px;
+                  background: none;
+                  border: none;
+                  cursor: pointer;
+                  font-size: 1rem;
+                "
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div style="display: flex; gap: 15px">
+            <button class="btn btn-primary" style="flex: 2">Add to Cart</button>
+            <button class="btn btn-outline" style="flex: 1">
+              <i class="far fa-heart"></i> Wishlist
+            </button>
+          </div>
+        </div>
+        <div class="product-share" style="margin-top: 30px">
+          <span style="font-weight: 500; margin-right: 15px">Share:</span>
+          <a
+            href="#"
+            style="
+              color: var(--text-color);
+              margin-right: 15px;
+              text-decoration: none;
+            "
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a
+            href="#"
+            style="
+              color: var(--text-color);
+              margin-right: 15px;
+              text-decoration: none;
+            "
+          >
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a
+            href="#"
+            style="
+              color: var(--text-color);
+              margin-right: 15px;
+              text-decoration: none;
+            "
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" style="color: var(--text-color); text-decoration: none">
+            <i class="fab fa-telegram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Tabs -->
+    <div class="product-tabs" style="margin-top: 60px">
+      <div
+        class="tabs-header"
+        style="
+          display: flex;
+          border-bottom: 1px solid var(--border-color);
+          margin-bottom: 30px;
+        "
+      >
+        <button
+          class="tab-btn active"
+          style="
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            border-bottom: 2px solid var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            margin-right: 20px;
+          "
+        >
+          Description
+        </button>
+        <button
+          class="tab-btn"
+          style="
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            margin-right: 20px;
+          "
+        >
+          Additional Information
+        </button>
+        <button
+          class="tab-btn"
+          style="
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+          "
+        >
+          Reviews (24)
+        </button>
+      </div>
+      <div class="tab-content">
+        <div class="tab-pane active">
+          <h3 style="margin-bottom: 20px">Product Description</h3>
+          <p style="margin-bottom: 15px; color: var(--text-light)">
+            The Interactive Robot is designed to introduce children to the world
+            of robotics and programming in a fun and engaging way. With its
+            user-friendly interface and responsive controls, children can learn
+            the basics of coding while having a blast.
+          </p>
+          <p style="margin-bottom: 15px; color: var(--text-light)">
+            This robot features voice command recognition, allowing children to
+            interact with it through simple verbal instructions. It can be
+            programmed to perform a variety of movements and tasks, helping to
+            develop problem-solving skills and logical thinking.
+          </p>
+          <p style="margin-bottom: 15px; color: var(--text-light)">
+            The LED display adds personality to the robot, showing different
+            facial expressions and reactions. The rechargeable battery provides
+            hours of play time, and the robot is compatible with our mobile app
+            for even more features and learning opportunities.
+          </p>
+          <p style="color: var(--text-light)">
+            Perfect for children aged 6-12 years, this educational toy makes
+            learning about technology fun and accessible.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Related Products</h2>
+        <div class="product-grid">
+          <!-- Related Product 1 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Science Kit"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Science Experiment Kit</h3>
+              <p class="card-text">
+                Educational science kit with 20 experiments.
+              </p>
+              <div class="card-price">$24.99</div>
+              <a href="product-details.html" class="btn btn-outline"
+                >View Details</a
+              >
+            </div>
+          </div>
+
+          <!-- Related Product 2 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Coding Kit"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Coding Starter Kit</h3>
+              <p class="card-text">
+                Learn to code with this beginner-friendly kit.
+              </p>
+              <div class="card-price">$34.99</div>
+              <a href="product-details.html" class="btn btn-outline"
+                >View Details</a
+              >
+            </div>
+          </div>
+
+          <!-- Related Product 3 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Remote Control Car"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">RC Smart Car</h3>
+              <p class="card-text">Programmable remote control car.</p>
+              <div class="card-price">$39.99</div>
+              <a href="product-details.html" class="btn btn-outline"
+                >View Details</a
+              >
+            </div>
+          </div>
+
+          <!-- Related Product 4 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Building Set"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">STEM Building Set</h3>
+              <p class="card-text">Educational building set with 150 pieces.</p>
+              <div class="card-price">$27.99</div>
+              <a href="product-details.html" class="btn btn-outline"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+{% endblock %} {% block extra_js %}
+<script>
+  // Load navbar and footer
+  fetch("navbar.html")
+    .then((response) => response.text())
+    .then((data) => {
+      const parser = new DOMParser();
+      const navbarDoc = parser.parseFromString(data, "text/html");
+      const navbarContent = navbarDoc.querySelector(".navbar");
+      document.getElementById("navbar-placeholder").appendChild(navbarContent);
+
+      // Execute navbar scripts
+      const scripts = navbarDoc.querySelectorAll("script");
+      scripts.forEach((script) => {
+        const newScript = document.createElement("script");
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+      });
+    });
+
+  fetch("footer.html")
+    .then((response) => response.text())
+    .then((data) => {
+      const parser = new DOMParser();
+      const footerDoc = parser.parseFromString(data, "text/html");
+      const footerContent = footerDoc.querySelector(".footer");
+      document.getElementById("footer-placeholder").appendChild(footerContent);
+    });
+
+  // Tab functionality
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      // Remove active class from all buttons
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
+      // Add active class to clicked button
+      button.classList.add("active");
+      // Update tab content (in a real implementation)
+    });
+  });
+
+  // Quantity selector
+  const minusBtn = document.querySelector(
+    ".quantity-selector button:first-child"
+  );
+  const plusBtn = document.querySelector(
+    ".quantity-selector button:last-child"
+  );
+  const quantityInput = document.querySelector(".quantity-selector input");
+
+  minusBtn.addEventListener("click", () => {
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+    }
+  });
+
+  plusBtn.addEventListener("click", () => {
+    const currentValue = parseInt(quantityInput.value);
+    quantityInput.value = currentValue + 1;
+  });
+
+  // Thumbnail click functionality
+  const thumbnails = document.querySelectorAll(".image-thumbnails div");
+  const mainImage = document.querySelector(".main-image img");
+
+  thumbnails.forEach((thumbnail) => {
+    thumbnail.addEventListener("click", () => {
+      // Remove border from all thumbnails
+      thumbnails.forEach((thumb) => (thumb.style.border = "none"));
+      // Add border to clicked thumbnail
+      thumbnail.style.border = "2px solid var(--primary-color)";
+      // Update main image (in a real implementation)
+      // mainImage.src = thumbnail.querySelector('img').src;
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,551 @@
+{% extends 'layouts/base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block title %}Shop{% endblock %}
+<!--  -->
+{% block extra_css %}
+<style>
+  /* Responsive styles directly in the template */
+  .shop-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .shop-sidebar {
+    width: 250px;
+  }
+
+  .shop-products {
+    flex: 1;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .mobile-filter-toggle {
+    display: none;
+  }
+
+  @media (max-width: 992px) {
+    .shop-layout {
+      flex-direction: column;
+    }
+
+    .shop-sidebar {
+      width: 100%;
+    }
+
+    .mobile-filter-toggle {
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .filter-content {
+      display: none;
+    }
+
+    .filter-content.active {
+      display: block;
+    }
+
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .product-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .shop-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  }
+</style>
+{% endblock %} {% block content %}
+<!-- Shop Header -->
+<section class="hero" style="padding: 50px 0">
+  <div class="container">
+    <h1 class="hero-title">Our Toy Collection</h1>
+    <p class="hero-subtitle">Browse our wide selection of toys for all ages</p>
+  </div>
+</section>
+
+<!-- Shop Content -->
+<section class="section">
+  <div class="container">
+    <div class="shop-layout">
+      <!-- Sidebar Filters -->
+      <div class="shop-sidebar">
+        <!-- Mobile Filter Toggle Button -->
+        <button
+          class="btn btn-outline mobile-filter-toggle"
+          onclick="toggleFilters()"
+          style="width: 100%"
+        >
+          <i class="fas fa-filter"></i> Show Filters
+        </button>
+
+        <div class="filter-content" id="filterContent">
+          <div class="filter-section" style="margin-bottom: 30px">
+            <h3 style="margin-bottom: 15px">Categories</h3>
+            <ul style="list-style: none; padding: 0">
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  Educational Toys
+                </label>
+              </li>
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  Plush Toys
+                </label>
+              </li>
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  Board Games
+                </label>
+              </li>
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  Puzzles
+                </label>
+              </li>
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  Outdoor Toys
+                </label>
+              </li>
+            </ul>
+          </div>
+
+          <div class="filter-section" style="margin-bottom: 30px">
+            <h3 style="margin-bottom: 15px">Age Range</h3>
+            <ul style="list-style: none; padding: 0">
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  0-2 Years
+                </label>
+              </li>
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  3-5 Years
+                </label>
+              </li>
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  6-8 Years
+                </label>
+              </li>
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  9-12 Years
+                </label>
+              </li>
+              <li style="margin-bottom: 10px">
+                <label
+                  style="display: flex; align-items: center; cursor: pointer"
+                >
+                  <input type="checkbox" style="margin-right: 10px" />
+                  12+ Years
+                </label>
+              </li>
+            </ul>
+          </div>
+
+          <div class="filter-section" style="margin-bottom: 30px">
+            <h3 style="margin-bottom: 15px">Price Range</h3>
+            <div style="padding: 0 10px">
+              <input
+                type="range"
+                min="0"
+                max="100"
+                value="50"
+                style="width: 100%; margin-bottom: 10px"
+              />
+              <div style="display: flex; justify-content: space-between">
+                <span>$0</span>
+                <span>$100</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" style="width: 100%">
+            Apply Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="shop-products">
+        <div
+          class="shop-header"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+          "
+        >
+          <div>
+            <p>Showing 1-12 of 36 products</p>
+          </div>
+          <div style="display: flex; align-items: center">
+            <label style="margin-right: 10px">Sort by:</label>
+            <select class="form-control" style="width: auto">
+              <option>Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest</option>
+              <option>Best Selling</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-grid">
+          <!-- Product 1 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Interactive Robot"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Interactive Robot</h3>
+              <p class="card-text">Educational robot with voice commands.</p>
+              <div class="card-price">$29.99</div>
+              <div style="display: flex; gap: 10px">
+                <a
+                  href="product-details.html"
+                  class="btn btn-outline"
+                  style="flex: 1"
+                  >View</a
+                >
+                <button class="btn btn-primary" style="flex: 1">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Building Blocks"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Building Blocks</h3>
+              <p class="card-text">Set of 100 colorful blocks.</p>
+              <div class="card-price">$19.99</div>
+              <div style="display: flex; gap: 10px">
+                <a
+                  href="product-details.html"
+                  class="btn btn-outline"
+                  style="flex: 1"
+                  >View</a
+                >
+                <button class="btn btn-primary" style="flex: 1">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Plush Teddy"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Plush Teddy</h3>
+              <p class="card-text">Super soft teddy bear for cuddling.</p>
+              <div class="card-price">$14.99</div>
+              <div style="display: flex; gap: 10px">
+                <a
+                  href="product-details.html"
+                  class="btn btn-outline"
+                  style="flex: 1"
+                  >View</a
+                >
+                <button class="btn btn-primary" style="flex: 1">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Board Game"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Family Board Game</h3>
+              <p class="card-text">Fun strategy game for the family.</p>
+              <div class="card-price">$24.99</div>
+              <div style="display: flex; gap: 10px">
+                <a
+                  href="product-details.html"
+                  class="btn btn-outline"
+                  style="flex: 1"
+                  >View</a
+                >
+                <button class="btn btn-primary" style="flex: 1">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Wooden Puzzle"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Wooden Puzzle</h3>
+              <p class="card-text">Educational wooden puzzle set.</p>
+              <div class="card-price">$16.99</div>
+              <div style="display: flex; gap: 10px">
+                <a
+                  href="product-details.html"
+                  class="btn btn-outline"
+                  style="flex: 1"
+                  >View</a
+                >
+                <button class="btn btn-primary" style="flex: 1">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="card">
+            <img
+              src="/placeholder.svg?height=200&width=300"
+              alt="Art Set"
+              class="card-img"
+            />
+            <div class="card-body">
+              <h3 class="card-title">Children's Art Set</h3>
+              <p class="card-text">Complete art set for creative kids.</p>
+              <div class="card-price">$22.99</div>
+              <div style="display: flex; gap: 10px">
+                <a
+                  href="product-details.html"
+                  class="btn btn-outline"
+                  style="flex: 1"
+                  >View</a
+                >
+                <button class="btn btn-primary" style="flex: 1">
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- More products... -->
+        </div>
+
+        <!-- Pagination -->
+        <div style="display: flex; justify-content: center; margin-top: 40px">
+          <div
+            class="pagination"
+            style="display: flex; gap: 5px; flex-wrap: wrap"
+          >
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                border: 1px solid var(--border-color);
+                text-decoration: none;
+                color: var(--text-color);
+              "
+            >
+              <i class="fas fa-chevron-left"></i>
+            </a>
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                border: 1px solid var(--border-color);
+                text-decoration: none;
+                color: white;
+                background-color: var(--primary-color);
+              "
+              >1</a
+            >
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                border: 1px solid var(--border-color);
+                text-decoration: none;
+                color: var(--text-color);
+              "
+              >2</a
+            >
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                border: 1px solid var(--border-color);
+                text-decoration: none;
+                color: var(--text-color);
+              "
+              >3</a
+            >
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                border: 1px solid var(--border-color);
+                text-decoration: none;
+                color: var(--text-color);
+              "
+            >
+              <i class="fas fa-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_js %}
+<script>
+  // Simple filter toggle function
+  function toggleFilters() {
+    var filterContent = document.getElementById("filterContent");
+    var toggleButton = document.querySelector(".mobile-filter-toggle");
+
+    if (filterContent.classList.contains("active")) {
+      filterContent.classList.remove("active");
+      toggleButton.innerHTML = '<i class="fas fa-filter"></i> Show Filters';
+    } else {
+      filterContent.classList.add("active");
+      toggleButton.innerHTML = '<i class="fas fa-times"></i> Hide Filters';
+    }
+  }
+
+  // On page load, make filter content active for desktop view
+  document.addEventListener("DOMContentLoaded", function () {
+    var filterContent = document.getElementById("filterContent");
+    if (window.innerWidth > 992) {
+      filterContent.classList.add("active");
+    }
+
+    // Add window resize listener to handle filter visibility
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 992) {
+        filterContent.classList.add("active");
+      } else if (!filterContent.classList.contains("user-toggled")) {
+        filterContent.classList.remove("active");
+      }
+    });
+
+    // Load navbar and footer
+    fetch("navbar.html")
+      .then((response) => response.text())
+      .then((data) => {
+        const parser = new DOMParser();
+        const navbarDoc = parser.parseFromString(data, "text/html");
+        const navbarContent = navbarDoc.querySelector(".navbar");
+        document
+          .getElementById("navbar-placeholder")
+          .appendChild(navbarContent);
+
+        // Execute navbar scripts
+        const scripts = navbarDoc.querySelectorAll("script");
+        scripts.forEach((script) => {
+          const newScript = document.createElement("script");
+          if (script.src) {
+            newScript.src = script.src;
+          } else {
+            newScript.textContent = script.textContent;
+          }
+          document.body.appendChild(newScript);
+        });
+      });
+
+    fetch("footer.html")
+      .then((response) => response.text())
+      .then((data) => {
+        const parser = new DOMParser();
+        const footerDoc = parser.parseFromString(data, "text/html");
+        const footerContent = footerDoc.querySelector(".footer");
+        document
+          .getElementById("footer-placeholder")
+          .appendChild(footerContent);
+      });
+  });
+</script>
+{% endblock %}

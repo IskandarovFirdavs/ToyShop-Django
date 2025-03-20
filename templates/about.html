@@ -1,0 +1,598 @@
+{% extends 'layouts/base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block title %}About Us{% endblock %}
+<!--  -->
+{% block extra_css %}
+<style>
+  /* Responsive styles for About page */
+  .about-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .about-image,
+  .about-content {
+    flex: 1;
+  }
+
+  .mission-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  @media (max-width: 992px) {
+    .about-layout {
+      flex-direction: column;
+    }
+
+    .mission-values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .mission-values {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonials {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{% endblock %} {% block content %}
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">About Our Store</h1>
+    <p class="hero-subtitle">
+      Learn about our journey, mission, and the team behind Firdavs O'yinchoqlar
+      Do'koni
+    </p>
+  </div>
+</section>
+
+<!-- Our Story Section -->
+<section class="section">
+  <div class="container">
+    <div class="about-layout">
+      <div
+        class="about-image"
+        style="
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <img
+          src="/placeholder.svg?height=400&width=500"
+          alt="Our Store"
+          style="width: 100%; height: auto"
+        />
+      </div>
+      <div class="about-content">
+        <h2 style="font-size: 1.8rem; margin-bottom: 20px">Our Story</h2>
+        <p style="margin-bottom: 15px; color: var(--text-light)">
+          Firdavs O'yinchoqlar Do'koni was founded in 2015 with a simple
+          mission: to bring joy to children through high-quality, educational
+          toys that inspire creativity and learning.
+        </p>
+        <p style="margin-bottom: 15px; color: var(--text-light)">
+          What started as a small shop in Tashkent has grown into a beloved toy
+          store that serves families throughout Uzbekistan. Our founder, Firdavs
+          Karimov, believed that play is an essential part of childhood
+          development, and this philosophy continues to guide everything we do.
+        </p>
+        <p style="color: var(--text-light)">
+          Today, we carefully curate our selection of toys to ensure they meet
+          our high standards for quality, safety, and educational value. We take
+          pride in offering products that not only entertain but also help
+          children learn and grow.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Mission Section -->
+<section class="section" style="background-color: var(--card-background)">
+  <div class="container">
+    <h2 class="section-title">Our Mission</h2>
+    <div
+      class="mission-content"
+      style="max-width: 800px; margin: 0 auto; text-align: center"
+    >
+      <p style="margin-bottom: 20px; color: var(--text-light)">
+        At Firdavs O'yinchoqlar Do'koni, our mission is to provide children with
+        toys that spark imagination, foster learning, and create lasting
+        memories. We believe that the right toys can make a significant impact
+        on a child's development and happiness.
+      </p>
+      <div class="mission-values">
+        <div
+          class="value-card"
+          style="
+            padding: 30px 20px;
+            background-color: var(--background-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+          "
+        >
+          <i
+            class="fas fa-star"
+            style="
+              font-size: 2.5rem;
+              color: var(--primary-color);
+              margin-bottom: 20px;
+            "
+          ></i>
+          <h3 style="margin-bottom: 15px">Quality</h3>
+          <p style="color: var(--text-light)">
+            We source only the highest quality toys that meet strict safety
+            standards.
+          </p>
+        </div>
+        <div
+          class="value-card"
+          style="
+            padding: 30px 20px;
+            background-color: var(--background-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+          "
+        >
+          <i
+            class="fas fa-book"
+            style="
+              font-size: 2.5rem;
+              color: var(--secondary-color);
+              margin-bottom: 20px;
+            "
+          ></i>
+          <h3 style="margin-bottom: 15px">Education</h3>
+          <p style="color: var(--text-light)">
+            We prioritize toys that promote learning and skill development.
+          </p>
+        </div>
+        <div
+          class="value-card"
+          style="
+            padding: 30px 20px;
+            background-color: var(--background-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+          "
+        >
+          <i
+            class="fas fa-smile"
+            style="
+              font-size: 2.5rem;
+              color: var(--accent-color);
+              margin-bottom: 20px;
+            "
+          ></i>
+          <h3 style="margin-bottom: 15px">Joy</h3>
+          <p style="color: var(--text-light)">
+            We believe in the power of play to bring happiness to children's
+            lives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Team Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Meet Our Team</h2>
+    <div class="team-grid">
+      <!-- Team Member 1 -->
+      <div class="team-card" style="text-align: center">
+        <div
+          style="
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+          "
+        >
+          <img
+            src="/placeholder.svg?height=150&width=150"
+            alt="Firdavs Karimov"
+            style="width: 100%; height: 100%; object-fit: cover"
+          />
+        </div>
+        <h3 style="margin-bottom: 5px">Firdavs Karimov</h3>
+        <p style="color: var(--primary-color); margin-bottom: 15px">
+          Founder & CEO
+        </p>
+        <p style="color: var(--text-light); margin-bottom: 15px">
+          Passionate about creating magical childhood experiences through
+          quality toys.
+        </p>
+        <div
+          class="social-links"
+          style="display: flex; justify-content: center; gap: 15px"
+        >
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+      </div>
+
+      <!-- Team Member 2 -->
+      <div class="team-card" style="text-align: center">
+        <div
+          style="
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+          "
+        >
+          <img
+            src="/placeholder.svg?height=150&width=150"
+            alt="Malika Rahimova"
+            style="width: 100%; height: 100%; object-fit: cover"
+          />
+        </div>
+        <h3 style="margin-bottom: 5px">Malika Rahimova</h3>
+        <p style="color: var(--primary-color); margin-bottom: 15px">
+          Store Manager
+        </p>
+        <p style="color: var(--text-light); margin-bottom: 15px">
+          Dedicated to providing exceptional customer service and a welcoming
+          store environment.
+        </p>
+        <div
+          class="social-links"
+          style="display: flex; justify-content: center; gap: 15px"
+        >
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+      </div>
+
+      <!-- Team Member 3 -->
+      <div class="team-card" style="text-align: center">
+        <div
+          style="
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+          "
+        >
+          <img
+            src="/placeholder.svg?height=150&width=150"
+            alt="Aziz Tursunov"
+            style="width: 100%; height: 100%; object-fit: cover"
+          />
+        </div>
+        <h3 style="margin-bottom: 5px">Aziz Tursunov</h3>
+        <p style="color: var(--primary-color); margin-bottom: 15px">
+          Product Specialist
+        </p>
+        <p style="color: var(--text-light); margin-bottom: 15px">
+          Expert in selecting educational and developmental toys for children of
+          all ages.
+        </p>
+        <div
+          class="social-links"
+          style="display: flex; justify-content: center; gap: 15px"
+        >
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+      </div>
+
+      <!-- Team Member 4 -->
+      <div class="team-card" style="text-align: center">
+        <div
+          style="
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+          "
+        >
+          <img
+            src="/placeholder.svg?height=150&width=150"
+            alt="Nilufar Aliyeva"
+            style="width: 100%; height: 100%; object-fit: cover"
+          />
+        </div>
+        <h3 style="margin-bottom: 5px">Nilufar Aliyeva</h3>
+        <p style="color: var(--primary-color); margin-bottom: 15px">
+          Customer Support
+        </p>
+        <p style="color: var(--text-light); margin-bottom: 15px">
+          Committed to ensuring every customer has a positive shopping
+          experience.
+        </p>
+        <div
+          class="social-links"
+          style="display: flex; justify-content: center; gap: 15px"
+        >
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="#" style="color: var(--text-color)"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section" style="background-color: var(--card-background)">
+  <div class="container">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="testimonials">
+      <div
+        class="testimonial"
+        style="
+          background-color: var(--background-color);
+          padding: 25px;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="testimonial-content"
+          style="position: relative; padding-left: 30px"
+        >
+          <i
+            class="fas fa-quote-left"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              color: var(--primary-color);
+              font-size: 1.5rem;
+            "
+          ></i>
+          <p style="margin-bottom: 20px; color: var(--text-light)">
+            The quality of toys from this store is exceptional. My kids love
+            everything we've purchased!
+          </p>
+          <div
+            class="testimonial-author"
+            style="display: flex; align-items: center"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-right: 15px;
+              "
+            >
+              AS
+            </div>
+            <div>
+              <h4 style="margin: 0">Alina Sobirova</h4>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--text-light)">
+                Happy Parent
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="testimonial"
+        style="
+          background-color: var(--background-color);
+          padding: 25px;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="testimonial-content"
+          style="position: relative; padding-left: 30px"
+        >
+          <i
+            class="fas fa-quote-left"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              color: var(--primary-color);
+              font-size: 1.5rem;
+            "
+          ></i>
+          <p style="margin-bottom: 20px; color: var(--text-light)">
+            Fast shipping and excellent customer service. The educational toys
+            have helped my child learn while having fun!
+          </p>
+          <div
+            class="testimonial-author"
+            style="display: flex; align-items: center"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--secondary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-right: 15px;
+              "
+            >
+              BK
+            </div>
+            <div>
+              <h4 style="margin: 0">Bobur Karimov</h4>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--text-light)">
+                Satisfied Customer
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="testimonial"
+        style="
+          background-color: var(--background-color);
+          padding: 25px;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="testimonial-content"
+          style="position: relative; padding-left: 30px"
+        >
+          <i
+            class="fas fa-quote-left"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              color: var(--primary-color);
+              font-size: 1.5rem;
+            "
+          ></i>
+          <p style="margin-bottom: 20px; color: var(--text-light)">
+            I love the variety of toys available. There's something for every
+            age group and interest!
+          </p>
+          <div
+            class="testimonial-author"
+            style="display: flex; align-items: center"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--accent-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-right: 15px;
+              "
+            >
+              MR
+            </div>
+            <div>
+              <h4 style="margin: 0">Malika Rahimova</h4>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--text-light)">
+                Regular Customer
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %} {% block extra_js %}
+<script>
+  // Load navbar and footer
+  fetch("navbar.html")
+    .then((response) => response.text())
+    .then((data) => {
+      const parser = new DOMParser();
+      const navbarDoc = parser.parseFromString(data, "text/html");
+      const navbarContent = navbarDoc.querySelector(".navbar");
+      document.getElementById("navbar-placeholder").appendChild(navbarContent);
+
+      // Execute navbar scripts
+      const scripts = navbarDoc.querySelectorAll("script");
+      scripts.forEach((script) => {
+        const newScript = document.createElement("script");
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+      });
+    });
+
+  fetch("footer.html")
+    .then((response) => response.text())
+    .then((data) => {
+      const parser = new DOMParser();
+      const footerDoc = parser.parseFromString(data, "text/html");
+      const footerContent = footerDoc.querySelector(".footer");
+      document.getElementById("footer-placeholder").appendChild(footerContent);
+    });
+</script>
+{% endblock %}

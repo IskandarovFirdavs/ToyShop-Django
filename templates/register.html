@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regestration page</title>
+  </head>
+
+  <body>
+    <!-- Register Section -->
+    <section style="padding: 60px 0; background-color: var(--background-color)">
+      <div
+        style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px"
+      >
+        <div
+          style="
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+          "
+        >
+          <div style="text-align: center; margin-bottom: 30px">
+            <h1
+              style="
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+                color: var(--text-color);
+                font-weight: 600;
+              "
+            >
+              Create an Account
+            </h1>
+            <p style="color: var(--text-light); margin: 0">
+              Join our community to enjoy exclusive benefits and a personalized
+              shopping experience.
+            </p>
+          </div>
+
+          <form
+            method="post"
+            action="{% url 'users:register' %}"
+            style="margin-bottom: 30px"
+          >
+            {% csrf_token %} {% if form.non_field_errors %}
+            <div
+              style="
+                background-color: #f8d7da;
+                color: #721c24;
+                padding: 10px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+              "
+            >
+              {% for error in form.non_field_errors %} {{ error }} {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Username field -->
+            <div style="margin-bottom: 20px">
+              <label
+                for="{{ form.username.id_for_label }}"
+                style="
+                  display: block;
+                  margin-bottom: 8px;
+                  font-weight: 500;
+                  color: var(--text-color);
+                "
+                >Username</label
+              >
+              <input
+                type="text"
+                name="username"
+                id="{{ form.username.id_for_label }}"
+                placeholder="Enter your username"
+                style="
+                  width: 100%;
+                  padding: 10px 15px;
+                  border: 1px solid var(--border-color);
+                  border-radius: 5px;
+                  background-color: var(--background-color);
+                  color: var(--text-color);
+                  font-family: 'Quicksand', sans-serif;
+                  transition: border-color 0.3s;
+                "
+                {%
+                if
+                form.username.value
+                %}value="{{ form.username.value }}"
+                {%
+                endif
+                %}
+                required
+              />
+              {% if form.username.errors %}
+              <div style="color: #dc3545; font-size: 0.875rem; margin-top: 5px">
+                {% for error in form.username.errors %} {{ error }} {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- First Name field -->
+            <div style="margin-bottom: 20px">
+              <label
+                for="{{ form.first_name.id_for_label }}"
+                style="
+                  display: block;
+                  margin-bottom: 8px;
+                  font-weight: 500;
+                  color: var(--text-color);
+                "
+                >First Name</label
+              >
+              <input
+                type="text"
+                name="first_name"
+                id="{{ form.first_name.id_for_label }}"
+                placeholder="Enter your first name"
+                style="
+                  width: 100%;
+                  padding: 10px 15px;
+                  border: 1px solid var(--border-color);
+                  border-radius: 5px;
+                  background-color: var(--background-color);
+                  color: var(--text-color);
+                  font-family: 'Quicksand', sans-serif;
+                  transition: border-color 0.3s;
+                "
+                {%
+                if
+                form.first_name.value
+                %}value="{{ form.first_name.value }}"
+                {%
+                endif
+                %}
+                required
+              />
+              {% if form.first_name.errors %}
+              <div style="color: #dc3545; font-size: 0.875rem; margin-top: 5px">
+                {% for error in form.first_name.errors %} {{ error }}
+                <!--  -->
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- Last Name field -->
+            <div style="margin-bottom: 20px">
+              <label
+                for="{{ form.last_name.id_for_label }}"
+                style="
+                  display: block;
+                  margin-bottom: 8px;
+                  font-weight: 500;
+                  color: var(--text-color);
+                "
+                >Last Name</label
+              >
+              <input
+                type="text"
+                name="last_name"
+                id="{{ form.last_name.id_for_label }}"
+                placeholder="Enter your last name"
+                style="
+                  width: 100%;
+                  padding: 10px 15px;
+                  border: 1px solid var(--border-color);
+                  border-radius: 5px;
+                  background-color: var(--background-color);
+                  color: var(--text-color);
+                  font-family: 'Quicksand', sans-serif;
+                  transition: border-color 0.3s;
+                "
+                {%
+                if
+                form.last_name.value
+                %}value="{{ form.last_name.value }}"
+                {%
+                endif
+                %}
+                required
+              />
+              {% if form.last_name.errors %}
+              <div style="color: #dc3545; font-size: 0.875rem; margin-top: 5px">
+                {% for error in form.last_name.errors %} {{ error }}
+                <!--  -->
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- Email field -->
+            <div style="margin-bottom: 20px">
+              <label
+                for="{{ form.email.id_for_label }}"
+                style="
+                  display: block;
+                  margin-bottom: 8px;
+                  font-weight: 500;
+                  color: var(--text-color);
+                "
+                >Email Address</label
+              >
+              <input
+                type="email"
+                name="email"
+                id="{{ form.email.id_for_label }}"
+                placeholder="Enter your email"
+                style="
+                  width: 100%;
+                  padding: 10px 15px;
+                  border: 1px solid var(--border-color);
+                  border-radius: 5px;
+                  background-color: var(--background-color);
+                  color: var(--text-color);
+                  font-family: 'Quicksand', sans-serif;
+                  transition: border-color 0.3s;
+                "
+                {%
+                if
+                form.email.value
+                %}value="{{ form.email.value }}"
+                {%
+                endif
+                %}
+                required
+              />
+              {% if form.email.errors %}
+              <div style="color: #dc3545; font-size: 0.875rem; margin-top: 5px">
+                {% for error in form.email.errors %} {{ error }} {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- Password field -->
+            <div style="margin-bottom: 20px">
+              <label
+                for="{{ form.password1.id_for_label }}"
+                style="
+                  display: block;
+                  margin-bottom: 8px;
+                  font-weight: 500;
+                  color: var(--text-color);
+                "
+                >Password</label
+              >
+              <div style="position: relative">
+                <input
+                  type="password"
+                  name="password1"
+                  id="{{ form.password1.id_for_label }}"
+                  placeholder="Create a password"
+                  style="
+                    width: 100%;
+                    padding: 10px 15px;
+                    border: 1px solid var(--border-color);
+                    border-radius: 5px;
+                    background-color: var(--background-color);
+                    color: var(--text-color);
+                    font-family: 'Quicksand', sans-serif;
+                    transition: border-color 0.3s;
+                  "
+                  required
+                />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  style="
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: none;
+                    border: none;
+                    color: var(--text-light);
+                    cursor: pointer;
+                  "
+                >
+                  <i class="far fa-eye"></i>
+                </button>
+              </div>
+              {% if form.password1.errors %}
+              <div style="color: #dc3545; font-size: 0.875rem; margin-top: 5px">
+                {% for error in form.password1.errors %} {{ error }}
+                <!--  -->
+                {% endfor %}
+              </div>
+              {% endif %} {% if form.password1.help_text %}
+              <div
+                style="
+                  color: var(--text-light);
+                  font-size: 0.875rem;
+                  margin-top: 5px;
+                "
+              >
+                {{ form.password1.help_text|safe }}
+              </div>
+              {% endif %}
+            </div>
+
+            <!-- Confirm Password field -->
+            <div style="margin-bottom: 20px">
+              <label
+                for="{{ form.password2.id_for_label }}"
+                style="
+                  display: block;
+                  margin-bottom: 8px;
+                  font-weight: 500;
+                  color: var(--text-color);
+                "
+                >Confirm Password</label
+              >
+              <div style="position: relative">
+                <input
+                  type="password"
+                  name="password2"
+                  id="{{ form.password2.id_for_label }}"
+                  placeholder="Confirm your password"
+                  style="
+                    width: 100%;
+                    padding: 10px 15px;
+                    border: 1px solid var(--border-color);
+                    border-radius: 5px;
+                    background-color: var(--background-color);
+                    color: var(--text-color);
+                    font-family: 'Quicksand', sans-serif;
+                    transition: border-color 0.3s;
+                  "
+                  required
+                />
+                <button
+                  type="button"
+                  class="toggle-password"
+                  style="
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: none;
+                    border: none;
+                    color: var(--text-light);
+                    cursor: pointer;
+                  "
+                >
+                  <i class="far fa-eye"></i>
+                </button>
+              </div>
+              {% if form.password2.errors %}
+              <div style="color: #dc3545; font-size: 0.875rem; margin-top: 5px">
+                {% for error in form.password2.errors %} {{ error }}
+                <!--  -->
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+
+            <div
+              style="
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 20px;
+              "
+            >
+              <input
+                type="checkbox"
+                id="terms"
+                style="margin-top: 5px; margin-right: 10px"
+                required
+              />
+              <label for="terms" style="color: var(--text-light)">
+                I agree to the
+                <a
+                  href="#"
+                  style="color: var(--primary-color); text-decoration: none"
+                  >Terms of Service</a
+                >
+                and
+                <a
+                  href="#"
+                  style="color: var(--primary-color); text-decoration: none"
+                  >Privacy Policy</a
+                >.
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              style="
+                display: inline-block;
+                width: 100%;
+                padding: 12px 20px;
+                border-radius: 5px;
+                font-weight: 500;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s;
+                border: none;
+                font-family: 'Quicksand', sans-serif;
+                background-color: var(--primary-color);
+                color: white;
+              "
+            >
+              Create Account
+            </button>
+          </form>
+
+          <div style="text-align: center">
+            <p style="margin: 0">
+              Already have an account?
+              <a
+                href="{% url 'users:login' %}"
+                style="
+                  color: var(--primary-color);
+                  text-decoration: none;
+                  font-weight: 500;
+                "
+                >Sign In</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Password visibility toggle
+        const togglePasswordButtons =
+          document.querySelectorAll(".toggle-password");
+        togglePasswordButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            const input = button.parentElement.querySelector("input");
+            const icon = button.querySelector("i");
+
+            if (input.type === "password") {
+              input.type = "text";
+              icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+              input.type = "password";
+              icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+          });
+        });
+
+        // Focus effect for input fields
+        const inputFields = document.querySelectorAll(
+          'input[type="text"], input[type="email"], input[type="password"]'
+        );
+        inputFields.forEach((input) => {
+          input.addEventListener("focus", () => {
+            input.style.borderColor = "var(--primary-color)";
+            input.style.outline = "none";
+          });
+
+          input.addEventListener("blur", () => {
+            input.style.borderColor = "var(--border-color)";
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

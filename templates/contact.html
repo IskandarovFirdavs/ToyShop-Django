@@ -1,0 +1,558 @@
+{% extends 'layouts/base.html' %} {% load static %} {% block title %}Contact
+Us{% endblock %} {% block content %} {% block extra_css %}
+<style>
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    #map {
+      height: 300px;
+    }
+  }
+</style>
+{% endblock %}
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">Contact Us</h1>
+    <p class="hero-subtitle">
+      We'd love to hear from you! Reach out with any questions, feedback, or
+      inquiries.
+    </p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section">
+  <div class="container">
+    <!-- Responsive grid layout using flexbox instead of CSS Grid for better compatibility -->
+    <div
+      class="contact-layout"
+      style="display: flex; flex-wrap: wrap; gap: 30px; margin: 0 -15px"
+    >
+      <!-- Contact Form - will take full width on mobile -->
+      <div
+        class="contact-form"
+        style="flex: 1; min-width: 300px; padding: 0 15px; margin-bottom: 30px"
+      >
+        <h2 style="margin-bottom: 20px">Send Us a Message</h2>
+        <form>
+          <div class="form-group">
+            <label for="name" class="form-label">Your Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="subject" class="form-label">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              class="form-control"
+              placeholder="Enter subject"
+            />
+          </div>
+          <div class="form-group">
+            <label for="message" class="form-label">Message</label>
+            <textarea
+              id="message"
+              class="form-control"
+              rows="5"
+              placeholder="Enter your message"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%">
+            Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Information - will take full width on mobile -->
+      <div
+        class="contact-info"
+        style="flex: 1; min-width: 300px; padding: 0 15px; margin-bottom: 30px"
+      >
+        <h2 style="margin-bottom: 20px">Contact Information</h2>
+        <p style="margin-bottom: 30px; color: var(--text-light)">
+          Feel free to reach out to us through any of the following methods.
+          We're here to help and will respond as soon as possible.
+        </p>
+
+        <!-- Responsive info items -->
+        <div class="info-items">
+          <!-- Location -->
+          <div
+            class="info-item"
+            style="display: flex; margin-bottom: 25px; flex-wrap: wrap"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                margin-bottom: 10px;
+              "
+            >
+              <i
+                class="fas fa-map-marker-alt"
+                style="color: white; font-size: 1.2rem"
+              ></i>
+            </div>
+            <div style="flex: 1; min-width: 200px">
+              <h3 style="margin-bottom: 5px">Our Location</h3>
+              <p style="color: var(--text-light)">
+                123 Toy Street, Tashkent, Uzbekistan
+              </p>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div
+            class="info-item"
+            style="display: flex; margin-bottom: 25px; flex-wrap: wrap"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--secondary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                margin-bottom: 10px;
+              "
+            >
+              <i
+                class="fas fa-phone"
+                style="color: white; font-size: 1.2rem"
+              ></i>
+            </div>
+            <div style="flex: 1; min-width: 200px">
+              <h3 style="margin-bottom: 5px">Phone Number</h3>
+              <p style="color: var(--text-light)">+998 90 123 4567</p>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div
+            class="info-item"
+            style="display: flex; margin-bottom: 25px; flex-wrap: wrap"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--accent-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                margin-bottom: 10px;
+              "
+            >
+              <i
+                class="fas fa-envelope"
+                style="color: white; font-size: 1.2rem"
+              ></i>
+            </div>
+            <div style="flex: 1; min-width: 200px">
+              <h3 style="margin-bottom: 5px">Email Address</h3>
+              <p style="color: var(--text-light)">info@firdavstoys.uz</p>
+            </div>
+          </div>
+
+          <!-- Working Hours -->
+          <div
+            class="info-item"
+            style="display: flex; margin-bottom: 25px; flex-wrap: wrap"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 15px;
+                margin-bottom: 10px;
+              "
+            >
+              <i
+                class="fas fa-clock"
+                style="color: white; font-size: 1.2rem"
+              ></i>
+            </div>
+            <div style="flex: 1; min-width: 200px">
+              <h3 style="margin-bottom: 5px">Working Hours</h3>
+              <p style="color: var(--text-light)">
+                Monday - Saturday: 9:00 AM - 8:00 PM
+              </p>
+              <p style="color: var(--text-light)">Sunday: 10:00 AM - 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Media - Responsive grid -->
+        <div class="social-media" style="margin-top: 30px">
+          <h3 style="margin-bottom: 15px">Follow Us</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 15px">
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                transition: transform 0.3s;
+              "
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--secondary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                transition: transform 0.3s;
+              "
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--accent-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                transition: transform 0.3s;
+              "
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              style="
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                transition: transform 0.3s;
+              "
+            >
+              <i class="fab fa-telegram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Map Section -->
+<div id="map"></div>
+
+<!-- FAQ Section -->
+<section class="section" style="background-color: var(--card-background)">
+  <div class="container">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="faq-container" style="max-width: 800px; margin: 0 auto">
+      <!-- FAQ Item 1 -->
+      <div
+        class="faq-item"
+        style="
+          margin-bottom: 20px;
+          background-color: var(--background-color);
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="faq-question"
+          style="
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+          "
+        >
+          <span>What are your shipping options?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div
+          class="faq-answer"
+          style="padding: 0 20px 15px; color: var(--text-light)"
+        >
+          <p>
+            We offer standard shipping (3-5 business days) and express shipping
+            (1-2 business days) throughout Uzbekistan. Free shipping is
+            available for orders over $50.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 2 -->
+      <div
+        class="faq-item"
+        style="
+          margin-bottom: 20px;
+          background-color: var(--background-color);
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="faq-question"
+          style="
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+          "
+        >
+          <span>What is your return policy?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div
+          class="faq-answer"
+          style="padding: 0 20px 15px; color: var(--text-light); display: none"
+        >
+          <p>
+            We accept returns within 30 days of purchase. Items must be unused
+            and in their original packaging. Please contact our customer service
+            team to initiate a return.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 3 -->
+      <div
+        class="faq-item"
+        style="
+          margin-bottom: 20px;
+          background-color: var(--background-color);
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="faq-question"
+          style="
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+          "
+        >
+          <span>Do you offer gift wrapping?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div
+          class="faq-answer"
+          style="padding: 0 20px 15px; color: var(--text-light); display: none"
+        >
+          <p>
+            Yes, we offer gift wrapping services for a small additional fee. You
+            can select this option during checkout and even include a
+            personalized message.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 4 -->
+      <div
+        class="faq-item"
+        style="
+          margin-bottom: 20px;
+          background-color: var(--background-color);
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="faq-question"
+          style="
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+          "
+        >
+          <span>How can I track my order?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div
+          class="faq-answer"
+          style="padding: 0 20px 15px; color: var(--text-light); display: none"
+        >
+          <p>
+            Once your order ships, you will receive a tracking number via email.
+            You can use this number to track your package on our website or
+            through the shipping carrier's site.
+          </p>
+        </div>
+      </div>
+
+      <!-- FAQ Item 5 -->
+      <div
+        class="faq-item"
+        style="
+          background-color: var(--background-color);
+          border-radius: 10px;
+          overflow: hidden;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="faq-question"
+          style="
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+          "
+        >
+          <span>Do you ship internationally?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div
+          class="faq-answer"
+          style="padding: 0 20px 15px; color: var(--text-light); display: none"
+        >
+          <p>
+            Currently, we only ship within Uzbekistan. We hope to expand our
+            shipping options to neighboring countries in the near future.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %} {% block extra_js %}
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+<script>
+  // Add responsive styles dynamically for mobile devices
+  (function () {
+    // Create responsive styles
+    var responsiveStyles = document.createElement("style");
+    responsiveStyles.innerHTML = `
+      @media (max-width: 768px) {
+        .contact-layout > div {
+          flex: 0 0 100% !important;
+        }
+        .info-item {
+          flex-direction: column !important;
+        }
+        .info-item > div:first-child {
+          margin-bottom: 15px !important;
+        }
+        .faq-question {
+          font-size: 0.95rem !important;
+          padding: 12px 15px !important;
+        }
+      }
+    `;
+    document.head.appendChild(responsiveStyles);
+  })();
+
+  // Map initialization
+  function initMap() {
+    var map = L.map("map").setView([41.2995, 69.2401], 12); // Toshkent markazi
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+
+    L.marker([41.288047, 69.226247])
+      .addTo(map)
+      .bindPopup("Firdavs O'yinchoqlar Do'koni<br>123 Toy Street, Tashkent")
+      .openPopup();
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize map
+    initMap();
+
+    // FAQ toggle functionality
+    const faqQuestions = document.querySelectorAll(".faq-question");
+    faqQuestions.forEach((question) => {
+      question.addEventListener("click", () => {
+        const answer = question.nextElementSibling;
+        const icon = question.querySelector("i");
+
+        // Toggle answer visibility
+        if (answer.style.display === "none" || !answer.style.display) {
+          answer.style.display = "block";
+          icon.classList.replace("fa-chevron-down", "fa-chevron-up");
+        } else {
+          answer.style.display = "none";
+          icon.classList.replace("fa-chevron-up", "fa-chevron-down");
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

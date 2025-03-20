@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container navbar-container">
+        <div class="navbar-logo">
+          <i class="fas fa-gamepad"></i>
+          <span>Firdavs O'yinchoqlar Do'koni</span>
+        </div>
+
+        <ul class="navbar-menu">
+          <li class="navbar-item">
+            <a href="{% url 'products:home' %}" class="navbar-link active"
+              >Home</a
+            >
+          </li>
+          <li class="navbar-item">
+            <a href="{% url 'products:shop' %}" class="navbar-link">Shop</a>
+          </li>
+          <li class="navbar-item">
+            <a href="{% url 'products:about' %}" class="navbar-link">About</a>
+          </li>
+          <li class="navbar-item">
+            <a href="{% url 'contact:contact' %}" class="navbar-link"
+              >Contact</a
+            >
+          </li>
+
+          <!-- Mobile-only menu items -->
+          <li class="navbar-item mobile-only">
+            <a href="{% url 'products:wishlist' %}" class="navbar-link">
+              <i class="far fa-heart"></i> Wishlist
+            </a>
+          </li>
+          <li class="navbar-item mobile-only">
+            <a href="{% url 'products:cart' %}" class="navbar-link">
+              <i class="fas fa-shopping-cart"></i> Cart
+            </a>
+          </li>
+          <li class="navbar-item mobile-only">
+            <a href="{% url 'users:profile' %}" class="navbar-link">
+              <i class="far fa-user"></i> Profile
+            </a>
+          </li>
+        </ul>
+
+        <div class="navbar-actions">
+          <div class="navbar-action search-toggle">
+            <i class="fas fa-search"></i>
+          </div>
+
+          <!-- Gender Theme Toggle -->
+          <div
+            class="navbar-action gender-toggle"
+            id="genderToggle"
+            title="Switch design theme"
+          >
+            <i class="fas fa-male"></i>
+          </div>
+
+          <!-- Theme Toggle -->
+          <div
+            class="navbar-action theme-toggle"
+            id="themeToggle"
+            title="Switch light/dark mode"
+          >
+            <i class="fas fa-moon"></i>
+          </div>
+
+          <!-- Language Selector -->
+          <div class="language-selector">
+            <div class="language-current" id="languageCurrent">
+              <span>EN</span>
+              <i
+                class="fas fa-chevron-down"
+                style="margin-left: 5px; font-size: 0.8rem"
+              ></i>
+            </div>
+            <div class="language-dropdown" id="languageDropdown">
+              <div class="language-option" data-lang="en">English</div>
+              <div class="language-option" data-lang="ru">Русский</div>
+              <div class="language-option" data-lang="uz">O'zbek</div>
+            </div>
+          </div>
+
+          <a
+            href="{% url 'products:wishlist' %}"
+            class="navbar-action wishlist-icon"
+          >
+            <i class="far fa-heart"></i>
+          </a>
+
+          <a href="{% url 'products:cart' %}" class="navbar-action cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+          </a>
+
+          <!-- {% url 'users:profile' %} -->
+          <a href="" class="navbar-action profile-icon">
+            <i class="far fa-user"></i>
+          </a>
+        </div>
+
+        <button
+          class="navbar-toggle"
+          id="navbarToggle"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Search Overlay (hidden by default) -->
+      <div class="search-overlay" id="searchOverlay">
+        <div class="container">
+          <div class="search-form">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search for products..."
+            />
+            <button type="button" class="btn-search">
+              <i class="fas fa-search"></i>
+            </button>
+            <button type="button" class="btn-close-search" id="closeSearch">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <script>
+      // Mobile Menu Toggle
+      const navbarToggle = document.getElementById("navbarToggle");
+      const navbarMenu = document.querySelector(".navbar-menu");
+
+      navbarToggle.addEventListener("click", () => {
+        navbarMenu.classList.toggle("active");
+        // Change icon when menu is open
+        const icon = navbarToggle.querySelector("i");
+        if (navbarMenu.classList.contains("active")) {
+          icon.classList.replace("fa-bars", "fa-times");
+        } else {
+          icon.classList.replace("fa-times", "fa-bars");
+        }
+      });
+
+      // Search Overlay Toggle
+      const searchToggle = document.querySelector(".search-toggle");
+      const searchOverlay = document.getElementById("searchOverlay");
+      const closeSearch = document.getElementById("closeSearch");
+
+      if (searchToggle && searchOverlay && closeSearch) {
+        searchToggle.addEventListener("click", () => {
+          searchOverlay.classList.add("active");
+          // Focus the search input
+          searchOverlay.querySelector("input").focus();
+        });
+
+        closeSearch.addEventListener("click", () => {
+          searchOverlay.classList.remove("active");
+        });
+      }
+
+      // Language Dropdown
+      const languageCurrent = document.getElementById("languageCurrent");
+      const languageDropdown = document.getElementById("languageDropdown");
+      const languageOptions = document.querySelectorAll(".language-option");
+
+      if (languageCurrent && languageDropdown) {
+        languageCurrent.addEventListener("click", (e) => {
+          e.stopPropagation();
+          languageDropdown.style.display =
+            languageDropdown.style.display === "block" ? "none" : "block";
+        });
+
+        languageOptions.forEach((option) => {
+          option.addEventListener("click", () => {
+            const lang = option.getAttribute("data-lang");
+            const currentLang = languageCurrent.querySelector("span");
+            currentLang.textContent = lang.toUpperCase();
+            languageDropdown.style.display = "none";
+
+            // Save language preference
+            localStorage.setItem("language", lang);
+          });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (event) => {
+          if (!event.target.closest(".language-selector")) {
+            languageDropdown.style.display = "none";
+          }
+        });
+      }
+
+      // Theme Toggle
+      const themeToggle = document.getElementById("themeToggle");
+      const htmlElement = document.documentElement;
+
+      if (themeToggle) {
+        const themeIcon = themeToggle.querySelector("i");
+
+        themeToggle.addEventListener("click", () => {
+          if (htmlElement.getAttribute("data-theme") === "dark") {
+            htmlElement.setAttribute("data-theme", "light");
+            themeIcon.classList.replace("fa-sun", "fa-moon");
+          } else {
+            htmlElement.setAttribute("data-theme", "dark");
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+          }
+
+          // Save theme preference
+          localStorage.setItem("theme", htmlElement.getAttribute("data-theme"));
+        });
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          htmlElement.setAttribute("data-theme", savedTheme);
+          if (savedTheme === "dark") {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+          }
+        } else {
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+          ).matches;
+          htmlElement.setAttribute(
+            "data-theme",
+            prefersDark ? "dark" : "light"
+          );
+          if (prefersDark) {
+            themeIcon.classList.replace("fa-moon", "fa-sun");
+          }
+        }
+      }
+
+      // Gender Theme Toggle
+      const genderToggle = document.getElementById("genderToggle");
+
+      if (genderToggle) {
+        const genderIcon = genderToggle.querySelector("i");
+
+        genderToggle.addEventListener("click", () => {
+          // Toggle between male and female designs
+          if (htmlElement.getAttribute("data-gender") === "female") {
+            htmlElement.setAttribute("data-gender", "male");
+            genderIcon.classList.replace("fa-female", "fa-male");
+            genderToggle.classList.add("spin-animation");
+          } else {
+            htmlElement.setAttribute("data-gender", "female");
+            genderIcon.classList.replace("fa-male", "fa-female");
+            genderToggle.classList.add("spin-animation");
+          }
+
+          // Remove animation class after animation completes
+          setTimeout(() => {
+            genderToggle.classList.remove("spin-animation");
+          }, 500);
+
+          // Save gender theme preference
+          localStorage.setItem(
+            "gender",
+            htmlElement.getAttribute("data-gender")
+          );
+        });
+
+        // Check for saved gender theme preference
+        const savedGender = localStorage.getItem("gender");
+        if (savedGender) {
+          htmlElement.setAttribute("data-gender", savedGender);
+          if (savedGender === "female") {
+            genderIcon.classList.replace("fa-male", "fa-female");
+          }
+        } else {
+          // Default to male design
+          htmlElement.setAttribute("data-gender", "male");
+        }
+      }
+
+      // Check for saved language preference
+      const savedLanguage = localStorage.getItem("language");
+      if (savedLanguage && languageCurrent) {
+        const currentLang = languageCurrent.querySelector("span");
+        if (currentLang) {
+          currentLang.textContent = savedLanguage.toUpperCase();
+        }
+      }
+
+      // Close mobile menu when clicking on a link
+      const mobileMenuLinks = document.querySelectorAll(
+        ".navbar-menu .navbar-link"
+      );
+      mobileMenuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navbarMenu.classList.remove("active");
+          const icon = navbarToggle.querySelector("i");
+          icon.classList.replace("fa-times", "fa-bars");
+        });
+      });
+    </script>
+  </body>
+</html>

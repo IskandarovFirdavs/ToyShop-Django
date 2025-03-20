@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Firdavs O'yinchoqlar Do'koni</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Login Section -->
+    <section class="section">
+      <div class="container">
+        <div
+          class="auth-container"
+          style="
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: var(--card-background);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+          "
+        >
+          <div
+            class="auth-header"
+            style="text-align: center; margin-bottom: 30px"
+          >
+            <h1 style="font-size: 1.8rem; margin-bottom: 10px">Welcome Back</h1>
+            <p style="color: var(--text-light)">
+              Sign in to your account to continue shopping
+            </p>
+          </div>
+
+          <form class="auth-form">
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="Enter your email"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="form-label">Password</label>
+              <div style="position: relative">
+                <input
+                  type="password"
+                  id="password"
+                  class="form-control"
+                  placeholder="Enter your password"
+                />
+                <button
+                  type="button"
+                  style="
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background: none;
+                    border: none;
+                    color: var(--text-light);
+                    cursor: pointer;
+                  "
+                >
+                  <i class="far fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+              "
+            >
+              <div style="display: flex; align-items: center">
+                <input
+                  type="checkbox"
+                  id="remember"
+                  style="margin-right: 10px"
+                />
+                <label for="remember" style="color: var(--text-light)"
+                  >Remember me</label
+                >
+              </div>
+              <a
+                href="#"
+                style="color: var(--primary-color); text-decoration: none"
+                >Forgot Password?</a
+              >
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%">
+              Sign In
+            </button>
+          </form>
+
+          <div
+            class="auth-divider"
+            style="display: flex; align-items: center; margin: 30px 0"
+          >
+            <div
+              style="
+                flex-grow: 1;
+                height: 1px;
+                background-color: var(--border-color);
+              "
+            ></div>
+            <span style="padding: 0 15px; color: var(--text-light)"
+              >or sign in with</span
+            >
+            <div
+              style="
+                flex-grow: 1;
+                height: 1px;
+                background-color: var(--border-color);
+              "
+            ></div>
+          </div>
+
+          <div
+            class="social-auth"
+            style="display: flex; gap: 15px; margin-bottom: 30px"
+          >
+            <button
+              class="btn"
+              style="
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                background-color: #4267b2;
+                color: white;
+              "
+            >
+              <i class="fab fa-facebook-f"></i>
+              <span>Facebook</span>
+            </button>
+            <button
+              class="btn"
+              style="
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                background-color: #db4437;
+                color: white;
+              "
+            >
+              <i class="fab fa-google"></i>
+              <span>Google</span>
+            </button>
+          </div>
+
+          <div class="auth-footer" style="text-align: center">
+            <p>
+              Don't have an account?
+              <a
+                href="register.html"
+                style="
+                  color: var(--primary-color);
+                  text-decoration: none;
+                  font-weight: 500;
+                "
+                >Sign Up</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+      // Load navbar and footer
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const parser = new DOMParser();
+          const navbarDoc = parser.parseFromString(data, "text/html");
+          const navbarContent = navbarDoc.querySelector(".navbar");
+          document
+            .getElementById("navbar-placeholder")
+            .appendChild(navbarContent);
+
+          // Execute navbar scripts
+          const scripts = navbarDoc.querySelectorAll("script");
+          scripts.forEach((script) => {
+            const newScript = document.createElement("script");
+            if (script.src) {
+              newScript.src = script.src;
+            } else {
+              newScript.textContent = script.textContent;
+            }
+            document.body.appendChild(newScript);
+          });
+        });
+
+      fetch("footer.html")
+        .then((response) => response.text())
+        .then((data) => {
+          const parser = new DOMParser();
+          const footerDoc = parser.parseFromString(data, "text/html");
+          const footerContent = footerDoc.querySelector(".footer");
+          document
+            .getElementById("footer-placeholder")
+            .appendChild(footerContent);
+        });
+
+      // Password visibility toggle
+      const togglePasswordButton = document.querySelector(".form-group button");
+      togglePasswordButton.addEventListener("click", () => {
+        const input = togglePasswordButton.previousElementSibling;
+        const icon = togglePasswordButton.querySelector("i");
+
+        if (input.type === "password") {
+          input.type = "text";
+          icon.classList.replace("fa-eye", "fa-eye-slash");
+        } else {
+          input.type = "password";
+          icon.classList.replace("fa-eye-slash", "fa-eye");
+        }
+      });
+    </script>
+  </body>
+</html>

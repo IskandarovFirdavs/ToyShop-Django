@@ -1,0 +1,449 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <h1 class="hero-title">Welcome to Firdavs O'yinchoqlar Do'koni</h1>
+    <p class="hero-subtitle">
+      Discover a world of joy with our carefully selected toys and games for
+      children of all ages.
+    </p>
+    <a href="shop.html" class="btn btn-primary">Shop Now</a>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Featured Products</h2>
+    <div class="product-grid">
+      <!-- Product Card 1 -->
+      <div class="card">
+        <img
+          src="/placeholder.svg?height=200&width=300"
+          alt="Toy Robot"
+          class="card-img"
+        />
+        <div class="card-body">
+          <h3 class="card-title">Interactive Robot</h3>
+          <p class="card-text">
+            Educational robot with voice commands and programming features.
+          </p>
+          <div class="card-price">$29.99</div>
+          <a href="product-details.html" class="btn btn-outline"
+            >View Details</a
+          >
+        </div>
+      </div>
+
+      <!-- Product Card 2 -->
+      <div class="card">
+        <img
+          src="/placeholder.svg?height=200&width=300"
+          alt="Building Blocks"
+          class="card-img"
+        />
+        <div class="card-body">
+          <h3 class="card-title">Creative Building Blocks</h3>
+          <p class="card-text">
+            Set of 100 colorful blocks for endless creative play.
+          </p>
+          <div class="card-price">$19.99</div>
+          <a href="product-details.html" class="btn btn-outline"
+            >View Details</a
+          >
+        </div>
+      </div>
+
+      <!-- Product Card 3 -->
+      <div class="card">
+        <img
+          src="/placeholder.svg?height=200&width=300"
+          alt="Plush Teddy"
+          class="card-img"
+        />
+        <div class="card-body">
+          <h3 class="card-title">Soft Plush Teddy</h3>
+          <p class="card-text">Super soft teddy bear, perfect for cuddling.</p>
+          <div class="card-price">$14.99</div>
+          <a href="product-details.html" class="btn btn-outline"
+            >View Details</a
+          >
+        </div>
+      </div>
+
+      <!-- Product Card 4 -->
+      <div class="card">
+        <img
+          src="/placeholder.svg?height=200&width=300"
+          alt="Board Game"
+          class="card-img"
+        />
+        <div class="card-body">
+          <h3 class="card-title">Family Board Game</h3>
+          <p class="card-text">Fun strategy game for the whole family.</p>
+          <div class="card-price">$24.99</div>
+          <a href="product-details.html" class="btn btn-outline"
+            >View Details</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center" style="margin-top: 30px">
+      <a href="shop.html" class="btn btn-secondary">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="section" style="background-color: var(--card-background)">
+  <div class="container">
+    <h2 class="section-title">Shop by Category</h2>
+    <div
+      class="category-grid"
+      style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        text-align: center;
+      "
+    >
+      <div
+        class="category-card"
+        style="
+          padding: 20px;
+          border-radius: 10px;
+          background-color: var(--background-color);
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <i
+          class="fas fa-robot"
+          style="
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+          "
+        ></i>
+        <h3>Educational Toys</h3>
+        <a href="shop.html" class="btn btn-outline" style="margin-top: 15px"
+          >Explore</a
+        >
+      </div>
+
+      <div
+        class="category-card"
+        style="
+          padding: 20px;
+          border-radius: 10px;
+          background-color: var(--background-color);
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <i
+          class="fas fa-gamepad"
+          style="
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+          "
+        ></i>
+        <h3>Video Games</h3>
+        <a href="shop.html" class="btn btn-outline" style="margin-top: 15px"
+          >Explore</a
+        >
+      </div>
+
+      <div
+        class="category-card"
+        style="
+          padding: 20px;
+          border-radius: 10px;
+          background-color: var(--background-color);
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <i
+          class="fas fa-puzzle-piece"
+          style="
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+          "
+        ></i>
+        <h3>Puzzles</h3>
+        <a href="shop.html" class="btn btn-outline" style="margin-top: 15px"
+          >Explore</a
+        >
+      </div>
+
+      <div
+        class="category-card"
+        style="
+          padding: 20px;
+          border-radius: 10px;
+          background-color: var(--background-color);
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <i
+          class="fas fa-baby"
+          style="
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+          "
+        ></i>
+        <h3>Infant Toys</h3>
+        <a href="shop.html" class="btn btn-outline" style="margin-top: 15px"
+          >Explore</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div
+      class="testimonials"
+      style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      "
+    >
+      <div
+        class="testimonial"
+        style="
+          background-color: var(--card-background);
+          padding: 25px;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="testimonial-content"
+          style="position: relative; padding-left: 30px"
+        >
+          <i
+            class="fas fa-quote-left"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              color: var(--primary-color);
+              font-size: 1.5rem;
+            "
+          ></i>
+          <p style="margin-bottom: 20px; color: var(--text-light)">
+            The quality of toys from this store is exceptional. My kids love
+            everything we've purchased!
+          </p>
+          <div
+            class="testimonial-author"
+            style="display: flex; align-items: center"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--primary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-right: 15px;
+              "
+            >
+              AS
+            </div>
+            <div>
+              <h4 style="margin: 0">Alina Sobirova</h4>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--text-light)">
+                Happy Parent
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="testimonial"
+        style="
+          background-color: var(--card-background);
+          padding: 25px;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="testimonial-content"
+          style="position: relative; padding-left: 30px"
+        >
+          <i
+            class="fas fa-quote-left"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              color: var(--primary-color);
+              font-size: 1.5rem;
+            "
+          ></i>
+          <p style="margin-bottom: 20px; color: var(--text-light)">
+            Fast shipping and excellent customer service. The educational toys
+            have helped my child learn while having fun!
+          </p>
+          <div
+            class="testimonial-author"
+            style="display: flex; align-items: center"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--secondary-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-right: 15px;
+              "
+            >
+              BK
+            </div>
+            <div>
+              <h4 style="margin: 0">Bobur Karimov</h4>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--text-light)">
+                Satisfied Customer
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="testimonial"
+        style="
+          background-color: var(--card-background);
+          padding: 25px;
+          border-radius: 10px;
+          box-shadow: 0 5px 15px var(--shadow-color);
+        "
+      >
+        <div
+          class="testimonial-content"
+          style="position: relative; padding-left: 30px"
+        >
+          <i
+            class="fas fa-quote-left"
+            style="
+              position: absolute;
+              left: 0;
+              top: 0;
+              color: var(--primary-color);
+              font-size: 1.5rem;
+            "
+          ></i>
+          <p style="margin-bottom: 20px; color: var(--text-light)">
+            I love the variety of toys available. There's something for every
+            age group and interest!
+          </p>
+          <div
+            class="testimonial-author"
+            style="display: flex; align-items: center"
+          >
+            <div
+              style="
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: var(--accent-color);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                margin-right: 15px;
+              "
+            >
+              MR
+            </div>
+            <div>
+              <h4 style="margin: 0">Malika Rahimova</h4>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--text-light)">
+                Regular Customer
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="section" style="background-color: var(--accent-color)">
+  <div class="container">
+    <div style="max-width: 600px; margin: 0 auto; text-align: center">
+      <h2 class="section-title">Subscribe to Our Newsletter</h2>
+      <p style="margin-bottom: 20px">
+        Stay updated with our newest arrivals and special offers.
+      </p>
+      <form style="display: flex; gap: 10px">
+        <input
+          type="email"
+          placeholder="Your Email Address"
+          class="form-control"
+          style="border-radius: 30px; flex: 1"
+        />
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+{% block extra_js %}
+<script>
+  // Load navbar and footer
+  fetch("navbar.html")
+    .then((response) => response.text())
+    .then((data) => {
+      const parser = new DOMParser();
+      const navbarDoc = parser.parseFromString(data, "text/html");
+      const navbarContent = navbarDoc.querySelector(".navbar");
+      document.getElementById("navbar-placeholder").appendChild(navbarContent);
+
+      // Execute navbar scripts
+      const scripts = navbarDoc.querySelectorAll("script");
+      scripts.forEach((script) => {
+        const newScript = document.createElement("script");
+        if (script.src) {
+          newScript.src = script.src;
+        } else {
+          newScript.textContent = script.textContent;
+        }
+        document.body.appendChild(newScript);
+      });
+    });
+
+  fetch("footer.html")
+    .then((response) => response.text())
+    .then((data) => {
+      const parser = new DOMParser();
+      const footerDoc = parser.parseFromString(data, "text/html");
+      const footerContent = footerDoc.querySelector(".footer");
+      document.getElementById("footer-placeholder").appendChild(footerContent);
+    });
+</script>
+
+{% endblock %}
