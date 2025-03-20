@@ -1,6 +1,9 @@
 {% extends 'layouts/base.html' %}
+<!--  -->
 {% load static %}
+<!--  -->
 {% block title %}Home{% endblock %}
+<!--  -->
 {% block content %}
 <!-- Hero Section -->
 <section class="hero">
@@ -10,7 +13,7 @@
       Discover a world of joy with our carefully selected toys and games for
       children of all ages.
     </p>
-    <a href="shop.html" class="btn btn-primary">Shop Now</a>
+    <a href="{% url 'products:shop' %}" class="btn btn-primary">Shop Now</a>
   </div>
 </section>
 
@@ -19,81 +22,30 @@
   <div class="container">
     <h2 class="section-title">Featured Products</h2>
     <div class="product-grid">
+      {% for product in products %}
       <!-- Product Card 1 -->
       <div class="card">
         <img
-          src="/placeholder.svg?height=200&width=300"
+          src="{{product.image.url}}"
           alt="Toy Robot"
           class="card-img"
         />
         <div class="card-body">
-          <h3 class="card-title">Interactive Robot</h3>
+          <h3 class="card-title">{{product.name}}</h3>
           <p class="card-text">
-            Educational robot with voice commands and programming features.
+            {{product.short_description}}
           </p>
-          <div class="card-price">$29.99</div>
-          <a href="product-details.html" class="btn btn-outline"
+          <div class="card-price">${{product.price}}</div>
+          <a href="{% url 'products:product' pk=product.pk %}" class="btn btn-outline"
             >View Details</a
           >
         </div>
       </div>
+      {% endfor %}
 
-      <!-- Product Card 2 -->
-      <div class="card">
-        <img
-          src="/placeholder.svg?height=200&width=300"
-          alt="Building Blocks"
-          class="card-img"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Creative Building Blocks</h3>
-          <p class="card-text">
-            Set of 100 colorful blocks for endless creative play.
-          </p>
-          <div class="card-price">$19.99</div>
-          <a href="product-details.html" class="btn btn-outline"
-            >View Details</a
-          >
-        </div>
-      </div>
-
-      <!-- Product Card 3 -->
-      <div class="card">
-        <img
-          src="/placeholder.svg?height=200&width=300"
-          alt="Plush Teddy"
-          class="card-img"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Soft Plush Teddy</h3>
-          <p class="card-text">Super soft teddy bear, perfect for cuddling.</p>
-          <div class="card-price">$14.99</div>
-          <a href="product-details.html" class="btn btn-outline"
-            >View Details</a
-          >
-        </div>
-      </div>
-
-      <!-- Product Card 4 -->
-      <div class="card">
-        <img
-          src="/placeholder.svg?height=200&width=300"
-          alt="Board Game"
-          class="card-img"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Family Board Game</h3>
-          <p class="card-text">Fun strategy game for the whole family.</p>
-          <div class="card-price">$24.99</div>
-          <a href="product-details.html" class="btn btn-outline"
-            >View Details</a
-          >
-        </div>
-      </div>
-    </div>
 
     <div class="text-center" style="margin-top: 30px">
-      <a href="shop.html" class="btn btn-secondary">View All Products</a>
+      <a href="{% url 'products:shop' %}" class="btn btn-secondary">View All Products</a>
     </div>
   </div>
 </section>
@@ -410,8 +362,8 @@
   </div>
 </section>
 
-
 {% endblock %}
+<!--  -->
 {% block extra_js %}
 <script>
   // Load navbar and footer

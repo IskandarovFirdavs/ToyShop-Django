@@ -1,6 +1,6 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from .models import CategoryModel, ColorModel, ProductModel, BannerModel, CommentModel
+from .models import CategoryModel, ColorModel, ProductModel, BannerModel, CommentModel, ProductImageModel
 from django.utils.translation import gettext_lazy as _
 
 
@@ -32,10 +32,15 @@ class ColorModelAdmin(MyTranslationAdmin):
     ordering = ['id']
 
 
+class ProductImageStackedInline(admin.TabularInline):
+    model = ProductImageModel  
+  
+
+
 @admin.register(ProductModel)
 class ProductModelAdmin(MyTranslationAdmin):
     list_display = ['id', 'name', 'price', 'category', 'color', 'is_available']
-    search_fields = ['name', 'category__name', 'color__name']
+    search_fields = ['name', 'category__name', 'color__name', 'sku']
     list_filter = ['category', 'color', 'is_available']
     autocomplete_fields = ['category', 'color']
     readonly_fields = ['created_at']
@@ -46,13 +51,14 @@ class ProductModelAdmin(MyTranslationAdmin):
         (None, {
             'fields': (
                 'name', 'price', 'short_description', 'long_description', 
-                'discount', 'image', 'extra_images', 'is_available', 
+                'discount', 'image', 'is_available', 
                 'availability', 'quantity', 'category', 'color', 'age_range', 'sku'
             )
         }),
     )
 
     actions = ['make_available', 'make_unavailable']
+    inlines = [ProductImageStackedInline]
 
     @admin.action(description=_("Tanlangan mahsulotlarni mavjud deb belgilash"))
     def make_available(self, request, queryset):

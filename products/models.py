@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 
 class CategoryModel(models.Model):
     name = models.CharField(max_length=255, verbose_name=_("name"))
-    image = models.ImageField(upload_to='categories')
 
     def __str__(self):
         return self.name
@@ -27,12 +26,11 @@ class ColorModel(models.Model):
 
 class ProductModel(models.Model):
     name = models.CharField(max_length=255, verbose_name=_("name"))
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name=_("price"))
+    price = models.DecimalField(max_digits=10, decimal_places=3, verbose_name=_("price"))
     short_description = models.CharField(max_length=255, verbose_name=_("short description"))
     long_description = models.TextField(verbose_name=_("long description"))
     discount = models.IntegerField(default=0, verbose_name=_("discount"))
     image = models.ImageField(upload_to='products', verbose_name=_("image"))
-    extra_images = models.JSONField(default=list, verbose_name=_("extra images"))
     is_available = models.BooleanField(default=True, verbose_name=_("is available"))
     availability = models.IntegerField(default=0, verbose_name=_("availability"))
     quantity = models.IntegerField(default=0, verbose_name=_("quantity"))
@@ -60,6 +58,23 @@ class ProductModel(models.Model):
 
     def is_discounted(self):
         return self.discount > 0
+
+
+
+class ProductImageModel(models.Model):
+    product = models.ForeignKey(
+        ProductModel, on_delete=models.CASCADE, related_name='images', verbose_name=_("product")
+    )
+    image = models.ImageField(upload_to='products/', verbose_name=_("image"))
+
+
+    def __str__(self):
+        return self.image.url if self.image else _("No Image")
+
+    class Meta:
+        verbose_name = _("Product Image")
+        verbose_name_plural = _("Product Images")
+
 
 
 class BannerModel(models.Model):
