@@ -1,0 +1,166 @@
+# КАКОЕ-ТО ОПИСАТЕЛЬНОЕ НАЗВАНИЕ.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Этот файл распространяется на тех же условиях, что и пакет PACKAGE.
+# ПЕРВЫЙ АВТОР <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-20 14:34+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\fod\settings.py:87
+msgid "English"
+msgstr "Английский"
+
+#: .\fod\settings.py:88
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: .\fod\settings.py:89
+msgid "Russian"
+msgstr "Русский"
+
+#: .\products\admin.py:57
+msgid "Tanlangan mahsulotlarni mavjud deb belgilash"
+msgstr "Отметить выбранные товары как доступные"
+
+#: .\products\admin.py:61
+msgid "Tanlangan mahsulotlarni mavjud emas deb belgilash"
+msgstr "Отметить выбранные товары как недоступные"
+
+#: .\products\models.py:6 .\products\models.py:18 .\products\models.py:29
+#: .\products\models.py:83
+msgid "name"
+msgstr "название"
+
+#: .\products\models.py:13
+msgid "Category"
+msgstr "Категория"
+
+#: .\products\models.py:14
+msgid "Categories"
+msgstr "Категории"
+
+#: .\products\models.py:21
+msgid "Unnamed color"
+msgstr "Безымянный цвет"
+
+#: .\products\models.py:24
+msgid "Color"
+msgstr "Цвет"
+
+#: .\products\models.py:25
+msgid "Colors"
+msgstr "Цвета"
+
+#: .\products\models.py:30
+msgid "price"
+msgstr "цена"
+
+#: .\products\models.py:31
+msgid "short description"
+msgstr "краткое описание"
+
+#: .\products\models.py:32
+msgid "long description"
+msgstr "подробное описание"
+
+#: .\products\models.py:33
+msgid "discount"
+msgstr "скидка"
+
+#: .\products\models.py:34 .\products\models.py:66
+msgid "image"
+msgstr "изображение"
+
+#: .\products\models.py:35
+msgid "extra images"
+msgstr "дополнительные изображения"
+
+#: .\products\models.py:36
+msgid "is available"
+msgstr "в наличии"
+
+#: .\products\models.py:37
+msgid "availability"
+msgstr "наличие"
+
+#: .\products\models.py:38
+msgid "quantity"
+msgstr "количество"
+
+#: .\products\models.py:39 .\products\models.py:69 .\products\models.py:85
+msgid "created at"
+msgstr "дата создания"
+
+#: .\products\models.py:41
+msgid "category"
+msgstr "категория"
+
+#: .\products\models.py:44
+msgid "color"
+msgstr "цвет"
+
+#: .\products\models.py:46
+msgid "age range"
+msgstr "возрастной диапазон"
+
+#: .\products\models.py:47
+msgid "SKU"
+msgstr "Артикул (SKU)"
+
+#: .\products\models.py:53
+msgid "Product"
+msgstr "Товар"
+
+#: .\products\models.py:54
+msgid "Products"
+msgstr "Товары"
+
+#: .\products\models.py:67
+msgid "is active"
+msgstr "активен"
+
+#: .\products\models.py:68
+msgid "description"
+msgstr "описание"
+
+#: .\products\models.py:72
+msgid "No Image"
+msgstr "Нет изображения"
+
+#: .\products\models.py:75
+msgid "Banner"
+msgstr "Баннер"
+
+#: .\products\models.py:76
+msgid "Banners"
+msgstr "Баннеры"
+
+#: .\products\models.py:81
+msgid "product"
+msgstr "товар"
+
+#: .\products\models.py:84
+msgid "comment"
+msgstr "комментарий"
+
+#: .\products\models.py:91
+msgid "Comment"
+msgstr "Комментарий"
+
+#: .\products\models.py:92
+msgid "Comments"
+msgstr "Комментарии"

@@ -1,0 +1,164 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-20 14:34+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\fod\settings.py:87
+msgid "English"
+msgstr ""
+
+#: .\fod\settings.py:88
+msgid "Uzbek"
+msgstr ""
+
+#: .\fod\settings.py:89
+msgid "Russian"
+msgstr ""
+
+#: .\products\admin.py:57
+msgid "Tanlangan mahsulotlarni mavjud deb belgilash"
+msgstr ""
+
+#: .\products\admin.py:61
+msgid "Tanlangan mahsulotlarni mavjud emas deb belgilash"
+msgstr ""
+
+#: .\products\models.py:6 .\products\models.py:18 .\products\models.py:29
+#: .\products\models.py:83
+msgid "name"
+msgstr ""
+
+#: .\products\models.py:13
+msgid "Category"
+msgstr ""
+
+#: .\products\models.py:14
+msgid "Categories"
+msgstr ""
+
+#: .\products\models.py:21
+msgid "Unnamed color"
+msgstr ""
+
+#: .\products\models.py:24
+msgid "Color"
+msgstr ""
+
+#: .\products\models.py:25
+msgid "Colors"
+msgstr ""
+
+#: .\products\models.py:30
+msgid "price"
+msgstr ""
+
+#: .\products\models.py:31
+msgid "short description"
+msgstr ""
+
+#: .\products\models.py:32
+msgid "long description"
+msgstr ""
+
+#: .\products\models.py:33
+msgid "discount"
+msgstr ""
+
+#: .\products\models.py:34 .\products\models.py:66
+msgid "image"
+msgstr ""
+
+#: .\products\models.py:35
+msgid "extra images"
+msgstr ""
+
+#: .\products\models.py:36
+msgid "is available"
+msgstr ""
+
+#: .\products\models.py:37
+msgid "availability"
+msgstr ""
+
+#: .\products\models.py:38
+msgid "quantity"
+msgstr ""
+
+#: .\products\models.py:39 .\products\models.py:69 .\products\models.py:85
+msgid "created at"
+msgstr ""
+
+#: .\products\models.py:41
+msgid "category"
+msgstr ""
+
+#: .\products\models.py:44
+msgid "color"
+msgstr ""
+
+#: .\products\models.py:46
+msgid "age range"
+msgstr ""
+
+#: .\products\models.py:47
+msgid "SKU"
+msgstr ""
+
+#: .\products\models.py:53
+msgid "Product"
+msgstr ""
+
+#: .\products\models.py:54
+msgid "Products"
+msgstr ""
+
+#: .\products\models.py:67
+msgid "is active"
+msgstr ""
+
+#: .\products\models.py:68
+msgid "description"
+msgstr ""
+
+#: .\products\models.py:72
+msgid "No Image"
+msgstr ""
+
+#: .\products\models.py:75
+msgid "Banner"
+msgstr ""
+
+#: .\products\models.py:76
+msgid "Banners"
+msgstr ""
+
+#: .\products\models.py:81
+msgid "product"
+msgstr ""
+
+#: .\products\models.py:84
+msgid "comment"
+msgstr ""
+
+#: .\products\models.py:91
+msgid "Comment"
+msgstr ""
+
+#: .\products\models.py:92
+msgid "Comments"
+msgstr ""
