@@ -1,61 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Footer Component</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3 class="footer-title">Firdavs O'yinchoqlar Do'koni</h3>
-                    <p>Bringing joy to children with quality toys and games.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 class="footer-title">Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="home.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 class="footer-title">Customer Service</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 class="footer-title">Contact Us</h3>
-                    <ul class="contact-info">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Toy Street, Tashkent, Uzbekistan</li>
-                        <li><i class="fas fa-phone"></i> +998 90 123 4567</li>
-                        <li><i class="fas fa-envelope"></i> info@firdavstoys.uz</li>
-                    </ul>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3 class="footer-title">Firdavs Toy Store</h3>
+            <p>Bringing joy to children with quality toys and games.</p>
+            <div class="social-links">
+              <a href="" class="social-link"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="" class="social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="" class="social-link"><i class="fab fa-telegram"></i></a>
             </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2025 Firdavs O'yinchoqlar Do'koni. All rights reserved.</p>
-            </div>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="{% url 'products:home' %}">Home</a></li>
+              <li><a href="{% url 'products:shop' %}">Shop</a></li>
+              <li><a href="{% url 'products:about' %}">About Us</a></li>
+              <li><a href="{% url 'contact:contact' %}">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Customer Service</h3>
+            <ul class="footer-links">
+              <li><a href="{% url 'contact:contact' %}">FAQ</a></li>
+              <li><a href="#">Shipping Policy</a></li>
+              <li><a href="#">Return Policy</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-section">
+            <h3 class="footer-title">Contact Us</h3>
+            <ul class="contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i> 45 Chilanzar Street,
+                Tashkent, Uzbekistan
+              </li>
+              <li><i class="fas fa-phone"></i> +998 94 019 5645</li>
+              <li><i class="fas fa-envelope"></i> firdavstoystore@gmail.com</li>
+            </ul>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2025 Firdavs Toy Store. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
-</body>
+  </body>
 </html>

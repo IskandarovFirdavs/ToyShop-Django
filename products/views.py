@@ -8,7 +8,7 @@ class Home(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['products'] = ProductModel.objects.all()  # Mahsulotlar qo‘shildi
+        context['products'] = ProductModel.objects.all() 
         context['discounts'] = ProductModel.objects.order_by('-discount')[:3]
         context['banners'] = BannerModel.objects.filter(is_active=True)[:3]
         return context
@@ -29,6 +29,13 @@ class ProductListView(TemplateView):
     template_name = 'shop.html'
     context_object_name = 'products'
     paginate_by = 9
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = ProductModel.objects.all() 
+        context['discounts'] = ProductModel.objects.order_by('-discount')[:3]
+        context['banners'] = BannerModel.objects.filter(is_active=True)[:3]
+        return context
 
     def get_queryset(self):
         qs = ProductModel.objects.all()
@@ -62,7 +69,7 @@ class ProductDetailView(DetailView):
             comment = form.save(commit=False)
             comment.product = self.object
             comment.save()
-            return redirect('products:detail', pk=self.object.pk)   
+            return redirect('products:product', pk=self.object.pk)   
 
         context['comment_form'] = form
         return self.render_to_response(context)

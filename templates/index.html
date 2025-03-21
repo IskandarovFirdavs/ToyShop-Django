@@ -35,7 +35,7 @@
           <p class="card-text">
             {{product.short_description}}
           </p>
-          <div class="card-price">${{product.price}}</div>
+          <div class="card-price">{{product.price}} sum</div>
           <a href="{% url 'products:product' pk=product.pk %}" class="btn btn-outline"
             >View Details</a
           >

@@ -247,22 +247,9 @@ Details{% endblock %} {% block content %}
             border: none;
             color: var(--text-light);
             cursor: pointer;
-            margin-right: 20px;
           "
         >
-          Additional Information
-        </button>
-        <button
-          class="tab-btn"
-          style="
-            padding: 15px 20px;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            cursor: pointer;
-          "
-        >
-          Reviews (24)
+          Reviews ({{ product.comments.count }})
         </button>
       </div>
       <div class="tab-content">
@@ -270,22 +257,6 @@ Details{% endblock %} {% block content %}
           <h3 style="margin-bottom: 20px">Product Description</h3>
           <p style="margin-bottom: 15px; color: var(--text-light)">
             {{ product.long_description }}
-          </p>
-          <p style="margin-bottom: 15px; color: var(--text-light)">
-            This robot features voice command recognition, allowing children to
-            interact with it through simple verbal instructions. It can be
-            programmed to perform a variety of movements and tasks, helping to
-            develop problem-solving skills and logical thinking.
-          </p>
-          <p style="margin-bottom: 15px; color: var(--text-light)">
-            The LED display adds personality to the robot, showing different
-            facial expressions and reactions. The rechargeable battery provides
-            hours of play time, and the robot is compatible with our mobile app
-            for even more features and learning opportunities.
-          </p>
-          <p style="color: var(--text-light)">
-            Perfect for children aged 6-12 years, this educational toy makes
-            learning about technology fun and accessible.
           </p>
         </div>
       </div>
@@ -295,85 +266,35 @@ Details{% endblock %} {% block content %}
     <section class="section">
       <div class="container">
         <h2 class="section-title">Related Products</h2>
+        {% for product in related %}
         <div class="product-grid">
-          <!-- Related Product 1 -->
           <div class="card">
             <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Science Kit"
+              src="{{ product.image.url }}"
+              alt="{{ product.name }}"
               class="card-img"
             />
             <div class="card-body">
-              <h3 class="card-title">Science Experiment Kit</h3>
-              <p class="card-text">
-                Educational science kit with 20 experiments.
-              </p>
-              <div class="card-price">$24.99</div>
-              <a href="product-details.html" class="btn btn-outline"
-                >View Details</a
-              >
-            </div>
-          </div>
-
-          <!-- Related Product 2 -->
-          <div class="card">
-            <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Coding Kit"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Coding Starter Kit</h3>
-              <p class="card-text">
-                Learn to code with this beginner-friendly kit.
-              </p>
-              <div class="card-price">$34.99</div>
-              <a href="product-details.html" class="btn btn-outline"
-                >View Details</a
-              >
-            </div>
-          </div>
-
-          <!-- Related Product 3 -->
-          <div class="card">
-            <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Remote Control Car"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">RC Smart Car</h3>
-              <p class="card-text">Programmable remote control car.</p>
-              <div class="card-price">$39.99</div>
-              <a href="product-details.html" class="btn btn-outline"
-                >View Details</a
-              >
-            </div>
-          </div>
-
-          <!-- Related Product 4 -->
-          <div class="card">
-            <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Building Set"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">STEM Building Set</h3>
-              <p class="card-text">Educational building set with 150 pieces.</p>
-              <div class="card-price">$27.99</div>
-              <a href="product-details.html" class="btn btn-outline"
+              <h3 class="card-title">{{product.name}}</h3>
+              <p class="card-text">{{product.short_description}}</p>
+              <div class="card-price">{{product.price}} sum</div>
+              <a
+                href="{% url 'products:product' pk=product.pk %}"
+                class="btn btn-outline"
                 >View Details</a
               >
             </div>
           </div>
         </div>
+        {% endfor %}
       </div>
     </section>
   </div>
 </section>
 
-{% endblock %} {% block extra_js %}
+{% endblock %}
+<!--  -->
+{% block extra_js %}
 <script>
   // Load navbar and footer
   fetch("navbar.html")
@@ -417,6 +338,186 @@ Details{% endblock %} {% block content %}
       // Update tab content (in a real implementation)
     });
   });
+
+  // tap categpry function
+  document.addEventListener("DOMContentLoaded", function () {
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabContent = document.querySelector(".tab-content");
+
+    tabButtons.forEach((button, index) => {
+      button.addEventListener("click", function () {
+        // Remove 'active' class from all buttons
+        tabButtons.forEach((btn) => {
+          btn.classList.remove("active");
+          btn.style.borderBottom = "none";
+          btn.style.color = "var(--text-light)";
+        });
+
+        // Add 'active' class to clicked button
+        this.classList.add("active");
+        this.style.borderBottom = "2px solid var(--primary-color)";
+        this.style.color = "var(--primary-color);";
+
+        // Change tab content dynamically (example data)
+        let content = "";
+        if (index === 0) {
+          content = `
+          <h3 style="margin-bottom: 20px">Additional Information</h3>
+          <p style="margin-bottom: 15px; color: var(--text-light)">
+            {{ product.additional_information }}
+          </p>
+        `;
+        } else if (index === 1) {
+          content = `
+          <h3 style="margin-bottom: 20px">Reviews ({{ product.comments.count }})</h3>
+          <p style="margin-bottom: 15px; color: var(--text-light)">
+            {% if product.comments.all %}
+<ul>
+  {% for comment in product.comments.all %}
+  <li>
+    <strong>{{ comment.name }}</strong> : 
+    {{ comment.comment }}
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No comments yet. Be the first to comment!</p>
+{% endif %}
+<hr />
+<h2 >Add a Comment</h2>
+<form method="post" class="comment-form">
+  {% csrf_token %} {{ comment_form.as_p }}
+  <button type="submit" class="submit-btn">Submit</button>
+</form>
+          </p>
+        `;
+        }
+
+        tabContent.innerHTML = `<div class="tab-pane active">${content}</div>`;
+      });
+    });
+  });
+
+  // CSS Styles
+  const style = document.createElement("style");
+  style.innerHTML = `
+  h2{
+  margin-top: 20px;
+  }
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--card-background, #ffffff);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.comment-form:focus-within {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  position: relative;
+}
+
+.comment-form input, 
+.comment-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color, #e1e5e9);
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: var(--input-background, #f8f9fa);
+  color: var(--text-color, #333);
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.comment-form textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none;
+  border-color: var(--primary-color, #4a6cf7);
+  background-color: var(--background-color, #ffffff);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb, 74, 108, 247), 0.1);
+}
+
+.comment-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-color, #333);
+  font-size: 14px;
+}
+
+.submit-btn {
+  background: linear-gradient(to right, var(--primary-color, #4a6cf7), var(--primary-hover-color, #3a5bd9));
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(var(--primary-rgb, 74, 108, 247), 0.2);
+  align-self: flex-start;
+  letter-spacing: 0.3px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(var(--primary-rgb, 74, 108, 247), 0.3);
+  background: linear-gradient(to right, var(--primary-hover-color, #3a5bd9), var(--primary-color, #4a6cf7));
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(var(--primary-rgb, 74, 108, 247), 0.2);
+}
+
+/* Optional: Character count for textarea */
+.char-count {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-size: 12px;
+  color: var(--text-light, #6c757d);
+  pointer-events: none;
+}
+
+/* Optional: Placeholder styling */
+.comment-form input::placeholder,
+.comment-form textarea::placeholder {
+  color: var(--placeholder-color, #adb5bd);
+  opacity: 0.8;
+}
+
+/* Optional: Add a nice animation for form appearance */
+@keyframes formAppear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.comment-form {
+  animation: formAppear 0.4s ease-out;
+}
+`;
+  document.head.appendChild(style);
 
   // Quantity selector
   const minusBtn = document.querySelector(

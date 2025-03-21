@@ -222,7 +222,7 @@
           "
         >
           <div>
-            <p>Showing 1-12 of 36 products</p>
+            <p>Showing {{products.count}} of {{products.all.count}} products</p>
           </div>
           <div style="display: flex; align-items: center">
             <label style="margin-right: 10px">Sort by:</label>
@@ -237,20 +237,20 @@
         </div>
 
         <div class="product-grid">
-          <!-- Product 1 -->
+          {% for product in products %}
           <div class="card">
             <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Interactive Robot"
+              src="{{ product.image.url }}"
+              alt="{{ product.name }}"
               class="card-img"
             />
             <div class="card-body">
-              <h3 class="card-title">Interactive Robot</h3>
-              <p class="card-text">Educational robot with voice commands.</p>
-              <div class="card-price">$29.99</div>
+              <h3 class="card-title">{{product.name}}</h3>
+              <p class="card-text">{{product.short_description}}</p>
+              <div class="card-price">{{product.price}} sum</div>
               <div style="display: flex; gap: 10px">
                 <a
-                  href="product-details.html"
+                  href="{% url 'products:product' pk=product.pk  %}"
                   class="btn btn-outline"
                   style="flex: 1"
                   >View</a
@@ -261,133 +261,7 @@
               </div>
             </div>
           </div>
-
-          <!-- Product 2 -->
-          <div class="card">
-            <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Building Blocks"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Building Blocks</h3>
-              <p class="card-text">Set of 100 colorful blocks.</p>
-              <div class="card-price">$19.99</div>
-              <div style="display: flex; gap: 10px">
-                <a
-                  href="product-details.html"
-                  class="btn btn-outline"
-                  style="flex: 1"
-                  >View</a
-                >
-                <button class="btn btn-primary" style="flex: 1">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 3 -->
-          <div class="card">
-            <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Plush Teddy"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Plush Teddy</h3>
-              <p class="card-text">Super soft teddy bear for cuddling.</p>
-              <div class="card-price">$14.99</div>
-              <div style="display: flex; gap: 10px">
-                <a
-                  href="product-details.html"
-                  class="btn btn-outline"
-                  style="flex: 1"
-                  >View</a
-                >
-                <button class="btn btn-primary" style="flex: 1">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 4 -->
-          <div class="card">
-            <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Board Game"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Family Board Game</h3>
-              <p class="card-text">Fun strategy game for the family.</p>
-              <div class="card-price">$24.99</div>
-              <div style="display: flex; gap: 10px">
-                <a
-                  href="product-details.html"
-                  class="btn btn-outline"
-                  style="flex: 1"
-                  >View</a
-                >
-                <button class="btn btn-primary" style="flex: 1">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 5 -->
-          <div class="card">
-            <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Wooden Puzzle"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Wooden Puzzle</h3>
-              <p class="card-text">Educational wooden puzzle set.</p>
-              <div class="card-price">$16.99</div>
-              <div style="display: flex; gap: 10px">
-                <a
-                  href="product-details.html"
-                  class="btn btn-outline"
-                  style="flex: 1"
-                  >View</a
-                >
-                <button class="btn btn-primary" style="flex: 1">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 6 -->
-          <div class="card">
-            <img
-              src="/placeholder.svg?height=200&width=300"
-              alt="Art Set"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Children's Art Set</h3>
-              <p class="card-text">Complete art set for creative kids.</p>
-              <div class="card-price">$22.99</div>
-              <div style="display: flex; gap: 10px">
-                <a
-                  href="product-details.html"
-                  class="btn btn-outline"
-                  style="flex: 1"
-                  >View</a
-                >
-                <button class="btn btn-primary" style="flex: 1">
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- More products... -->
+          {% endfor %}
         </div>
 
         <!-- Pagination -->
