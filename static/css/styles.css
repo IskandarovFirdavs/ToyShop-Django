@@ -1594,3 +1594,56 @@ a:hover {
 [data-gender="female"] .navbar-action:hover {
   transform: scale(1.1);
 }
+
+@media (max-width: 992px) {
+  .mobile-only {
+    display: block;
+  }
+
+  .mobile-only .navbar-link {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobile-only .navbar-link i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+  }
+
+  /* Hide only wishlist and cart icons in the navbar on mobile */
+  .wishlist-icon,
+  .cart-icon {
+    display: none;
+  }
+
+  /* Keep profile icon visible */
+  .profile-icon {
+    display: block !important;
+  }
+}
+
+/* Add these styles to ensure the profile icon is visible on all screen sizes */
+.profile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-icon i {
+  font-size: 1.1rem;
+  transition: color var(--transition-speed), transform 0.2s ease;
+}
+
+.profile-icon:hover i {
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+@media (max-width: 992px) {
+  /* Hide these icons in the navbar on mobile */
+  .wishlist-icon,
+  .cart-icon,
+  .profile-icon {
+    display: none;
+  }
+}
