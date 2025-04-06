@@ -1,5 +1,12 @@
-{% extends 'layouts/base.html' %} {% load static %} {% block title %}Shopping Cart{% endblock %}
+{% extends 'layouts/base.html' %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block title %}Shopping Cart{% endblock %}
+<!--  -->
 {% block content %}
+<!--  -->
+
 <!-- Cart Section -->
 <section class="section">
   <div class="container">
@@ -30,7 +37,9 @@
           <div></div>
         </div>
 
+        {% if products %}
         <!-- Cart Item 1 -->
+        {% for product in products %}
         <div
           class="cart-item"
           style="
@@ -55,15 +64,15 @@
             "
           >
             <img
-              src="/placeholder.svg?height=80&width=80"
-              alt="Interactive Robot"
+              src="{{product.image.url}}"
+              alt="{{product.name}}"
               style="width: 100%; height: 100%; object-fit: cover"
             />
           </div>
           <div class="item-details">
-            <h3 style="margin-bottom: 5px">Interactive Robot</h3>
+            <h3 style="margin-bottom: 5px">{{product.name}}</h3>
             <p style="color: var(--text-light); font-size: 0.9rem">
-              Educational robot with voice commands
+              {{product.short_description}}
             </p>
           </div>
           <div
@@ -125,7 +134,7 @@
               text-align: right;
             "
           >
-            $29.99
+            {{ product.price }} UZS
           </div>
           <div class="item-remove" style="text-align: center">
             <button
@@ -137,233 +146,15 @@
                 font-size: 1.2rem;
               "
             >
-              <i class="fas fa-times"></i>
+              <a
+                href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}"
+              >
+                <i class="fas fa-times"></i
+              ></a>
             </button>
           </div>
         </div>
-
-        <!-- Cart Item 2 -->
-        <div
-          class="cart-item"
-          style="
-            display: grid;
-            grid-template-columns: 100px 1fr 120px 120px 50px;
-            gap: 20px;
-            align-items: center;
-            padding: 20px;
-            background-color: var(--card-background);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            margin-bottom: 20px;
-          "
-        >
-          <div
-            class="item-image"
-            style="
-              width: 80px;
-              height: 80px;
-              border-radius: 5px;
-              overflow: hidden;
-            "
-          >
-            <img
-              src="/placeholder.svg?height=80&width=80"
-              alt="Building Blocks"
-              style="width: 100%; height: 100%; object-fit: cover"
-            />
-          </div>
-          <div class="item-details">
-            <h3 style="margin-bottom: 5px">Creative Building Blocks</h3>
-            <p style="color: var(--text-light); font-size: 0.9rem">
-              Set of 100 colorful blocks
-            </p>
-          </div>
-          <div
-            class="item-quantity"
-            style="display: flex; align-items: center; justify-content: center"
-          >
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                border: 1px solid var(--border-color);
-                border-radius: 5px;
-                overflow: hidden;
-              "
-            >
-              <button
-                style="
-                  width: 30px;
-                  height: 30px;
-                  background: none;
-                  border: none;
-                  cursor: pointer;
-                  font-size: 0.8rem;
-                "
-              >
-                -
-              </button>
-              <input
-                type="number"
-                value="2"
-                min="1"
-                style="
-                  width: 40px;
-                  height: 30px;
-                  border: none;
-                  text-align: center;
-                  font-family: 'Quicksand', sans-serif;
-                "
-              />
-              <button
-                style="
-                  width: 30px;
-                  height: 30px;
-                  background: none;
-                  border: none;
-                  cursor: pointer;
-                  font-size: 0.8rem;
-                "
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div
-            class="item-price"
-            style="
-              font-weight: 600;
-              color: var(--primary-color);
-              text-align: right;
-            "
-          >
-            $39.98
-          </div>
-          <div class="item-remove" style="text-align: center">
-            <button
-              style="
-                background: none;
-                border: none;
-                color: var(--text-light);
-                cursor: pointer;
-                font-size: 1.2rem;
-              "
-            >
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Cart Item 3 -->
-        <div
-          class="cart-item"
-          style="
-            display: grid;
-            grid-template-columns: 100px 1fr 120px 120px 50px;
-            gap: 20px;
-            align-items: center;
-            padding: 20px;
-            background-color: var(--card-background);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px var(--shadow-color);
-          "
-        >
-          <div
-            class="item-image"
-            style="
-              width: 80px;
-              height: 80px;
-              border-radius: 5px;
-              overflow: hidden;
-            "
-          >
-            <img
-              src="/placeholder.svg?height=80&width=80"
-              alt="Plush Teddy"
-              style="width: 100%; height: 100%; object-fit: cover"
-            />
-          </div>
-          <div class="item-details">
-            <h3 style="margin-bottom: 5px">Soft Plush Teddy</h3>
-            <p style="color: var(--text-light); font-size: 0.9rem">
-              Super soft teddy bear for cuddling
-            </p>
-          </div>
-          <div
-            class="item-quantity"
-            style="display: flex; align-items: center; justify-content: center"
-          >
-            <div
-              style="
-                display: flex;
-                align-items: center;
-                border: 1px solid var(--border-color);
-                border-radius: 5px;
-                overflow: hidden;
-              "
-            >
-              <button
-                style="
-                  width: 30px;
-                  height: 30px;
-                  background: none;
-                  border: none;
-                  cursor: pointer;
-                  font-size: 0.8rem;
-                "
-              >
-                -
-              </button>
-              <input
-                type="number"
-                value="1"
-                min="1"
-                style="
-                  width: 40px;
-                  height: 30px;
-                  border: none;
-                  text-align: center;
-                  font-family: 'Quicksand', sans-serif;
-                "
-              />
-              <button
-                style="
-                  width: 30px;
-                  height: 30px;
-                  background: none;
-                  border: none;
-                  cursor: pointer;
-                  font-size: 0.8rem;
-                "
-              >
-                +
-              </button>
-            </div>
-          </div>
-          <div
-            class="item-price"
-            style="
-              font-weight: 600;
-              color: var(--primary-color);
-              text-align: right;
-            "
-          >
-            $14.99
-          </div>
-          <div class="item-remove" style="text-align: center">
-            <button
-              style="
-                background: none;
-                border: none;
-                color: var(--text-light);
-                cursor: pointer;
-                font-size: 1.2rem;
-              "
-            >
-              <i class="fas fa-times"></i>
-            </button>
-          </div>
-        </div>
+        {% endfor %} {%endif%}
 
         <!-- Cart Actions -->
         <div
@@ -383,7 +174,6 @@
           <button class="btn btn-outline">Update Cart</button>
         </div>
       </div>
-
       <!-- Cart Summary -->
       <div
         class="cart-summary"
@@ -397,56 +187,12 @@
       >
         <h2 style="margin-bottom: 20px">Cart Summary</h2>
 
-        <div
-          class="summary-row"
-          style="
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-          "
-        >
-          <span>Subtotal</span>
-          <span style="font-weight: 600">$84.96</span>
-        </div>
-
-        <div
-          class="summary-row"
-          style="
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-          "
-        >
-          <span>Shipping</span>
-          <span style="font-weight: 600">$5.00</span>
-        </div>
-
-        <div
-          class="summary-row"
-          style="
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-          "
-        >
-          <span>Tax</span>
-          <span style="font-weight: 600">$8.50</span>
-        </div>
-
-        <div
-          class="summary-row"
-          style="
-            display: flex;
-            justify-content: space-between;
-            padding-top: 15px;
-            margin-bottom: 20px;
-            border-top: 1px solid var(--border-color);
-            font-size: 1.2rem;
-            font-weight: 600;
-          "
-        >
-          <span>Total</span>
-          <span style="color: var(--primary-color)">$98.46</span>
+        <div class="cart-summary">
+          <p>Subtotal: <span class="subtotal-price">0 UZS</span></p>
+          <p>Shipping: <span class="shipping-price">0 </span></p>
+          <p>Tax: <span class="tax-price">0 UZS</span></p>
+          <hr />
+          <p>Total: <span class="total-price">0 UZS</span></p>
         </div>
 
         <button
@@ -508,7 +254,9 @@
       <p style="color: var(--text-light); margin-bottom: 20px">
         Looks like you haven't added any items to your cart yet.
       </p>
-      <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+      <a href="{% url 'products:shop' %}" class="btn btn-primary"
+        >Continue Shopping</a
+      >
     </div>
   </div>
 </section>
@@ -528,58 +276,7 @@
         <div class="card-body">
           <h3 class="card-title">Family Board Game</h3>
           <p class="card-text">Fun strategy game for the family.</p>
-          <div class="card-price">$24.99</div>
-          <button class="btn btn-outline" style="width: 100%">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-
-      <!-- Product 2 -->
-      <div class="card">
-        <img
-          src="/placeholder.svg?height=200&width=300"
-          alt="Wooden Puzzle"
-          class="card-img"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Wooden Puzzle</h3>
-          <p class="card-text">Educational wooden puzzle set.</p>
-          <div class="card-price">$16.99</div>
-          <button class="btn btn-outline" style="width: 100%">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="card">
-        <img
-          src="/placeholder.svg?height=200&width=300"
-          alt="Art Set"
-          class="card-img"
-        />
-        <div class="card-body">
-          <h3 class="card-title">Children's Art Set</h3>
-          <p class="card-text">Complete art set for creative kids.</p>
-          <div class="card-price">$22.99</div>
-          <button class="btn btn-outline" style="width: 100%">
-            Add to Cart
-          </button>
-        </div>
-      </div>
-
-      <!-- Product 4 -->
-      <div class="card">
-        <img
-          src="/placeholder.svg?height=200&width=300"
-          alt="Remote Control Car"
-          class="card-img"
-        />
-        <div class="card-body">
-          <h3 class="card-title">RC Smart Car</h3>
-          <p class="card-text">Programmable remote control car.</p>
-          <div class="card-price">39.99</div>
+          <div class="card-price">24.99</div>
           <button class="btn btn-outline" style="width: 100%">
             Add to Cart
           </button>
@@ -589,10 +286,9 @@
   </div>
 </section>
 
-
 {% endblock %} {% block extra_js %}
 <script>
-  // Load navbar and footer
+  // Navbar va footer yuklash
   fetch("navbar.html")
     .then((response) => response.text())
     .then((data) => {
@@ -601,7 +297,6 @@
       const navbarContent = navbarDoc.querySelector(".navbar");
       document.getElementById("navbar-placeholder").appendChild(navbarContent);
 
-      // Execute navbar scripts
       const scripts = navbarDoc.querySelectorAll("script");
       scripts.forEach((script) => {
         const newScript = document.createElement("script");
@@ -623,47 +318,93 @@
       document.getElementById("footer-placeholder").appendChild(footerContent);
     });
 
-  // Quantity change functionality
-  const quantityContainers = document.querySelectorAll(".item-quantity");
-  quantityContainers.forEach((container) => {
+  // Har bir mahsulot uchun miqdor va narxni boshqarish
+  document.querySelectorAll(".cart-item").forEach((item) => {
+    const container = item.querySelector(".item-quantity");
     const minusBtn = container.querySelector("button:first-child");
     const plusBtn = container.querySelector("button:last-child");
     const input = container.querySelector("input");
+    const priceElement = item.querySelector(".item-price");
 
-    minusBtn.addEventListener("click", () => {
+    // Mahsulotning birlik narxini olish
+    const pricePerItem = parseInt(
+      priceElement.getAttribute("data-price") ||
+        priceElement.textContent.replace("UZS", "").trim()
+    );
+
+    function updateItemPrice() {
+      const quantity = parseInt(input.value) || 1;
+      const totalPrice = quantity * pricePerItem;
+      priceElement.textContent = totalPrice + " UZS";
+      updateCartTotals();
+    }
+
+    minusBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       const currentValue = parseInt(input.value);
       if (currentValue > 1) {
         input.value = currentValue - 1;
-        updateCartTotals();
+        updateItemPrice();
       }
     });
 
-    plusBtn.addEventListener("click", () => {
+    plusBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       input.value = parseInt(input.value) + 1;
-      updateCartTotals();
+      updateItemPrice();
     });
 
     input.addEventListener("change", () => {
-      if (parseInt(input.value) < 1) {
-        input.value = 1;
-      }
-      updateCartTotals();
+      if (parseInt(input.value) < 1) input.value = 1;
+      updateItemPrice();
     });
+
+    // Dastlabki narxni saqlash
+    priceElement.setAttribute("data-price", pricePerItem);
+    updateItemPrice();
   });
 
-  // Remove item functionality
-  const removeButtons = document.querySelectorAll(".item-remove button");
-  removeButtons.forEach((button) => {
-    button.addEventListener("click", () => {
+  // Savatchadagi barcha mahsulotlarning umumiy summasini hisoblash
+  function updateCartTotals() {
+    let subtotal = 0;
+    let totalItems = 0;
+
+    document.querySelectorAll(".cart-item").forEach((item) => {
+      const priceText = item.querySelector(".item-price").textContent;
+      subtotal += parseInt(priceText.replace("UZS", "").trim());
+
+      const quantity = parseInt(
+        item.querySelector(".item-quantity input").value
+      );
+      totalItems += quantity;
+    });
+
+    // Jami summani yangilash
+    const totalElement = document.querySelector(".cart-total .amount");
+    if (totalElement) {
+      totalElement.textContent = subtotal + " UZS";
+    }
+
+    // Mahsulotlar sonini yangilash (agar kerak bo'lsa)
+    const itemsCountElement = document.querySelector(".cart-items-count");
+    if (itemsCountElement) {
+      itemsCountElement.textContent = totalItems;
+    }
+  }
+
+  // Mahsulotni o'chirish
+  document.querySelectorAll(".item-remove button").forEach((button) => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
       const cartItem = button.closest(".cart-item");
       cartItem.style.opacity = "0";
+
       setTimeout(() => {
         cartItem.remove();
         updateCartTotals();
 
-        // Check if cart is empty
-        const remainingItems = document.querySelectorAll(".cart-item");
-        if (remainingItems.length === 0) {
+        // Agar savatcha bo'sh bo'lsa
+        if (document.querySelectorAll(".cart-item").length === 0) {
           document.querySelector(".cart-layout").style.display = "none";
           document.querySelector(".empty-cart").style.display = "block";
         }
@@ -671,10 +412,9 @@
     });
   });
 
-  // Update cart totals (simplified)
-  function updateCartTotals() {
-    // In a real implementation, this would calculate actual totals
-    console.log("Cart totals updated");
-  }
+  // Sahifa yuklanganda ishga tushirish
+  document.addEventListener("DOMContentLoaded", () => {
+    updateCartTotals();
+  });
 </script>
 {% endblock %}

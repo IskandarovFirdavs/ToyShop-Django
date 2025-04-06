@@ -39,35 +39,16 @@ class ProductImageStackedInline(admin.TabularInline):
 
 @admin.register(ProductModel)
 class ProductModelAdmin(MyTranslationAdmin):
-    list_display = ['id', 'name', 'price', 'category', 'color', 'is_available']
-    search_fields = ['name', 'category__name', 'color__name', 'sku']
-    list_filter = ['category', 'color', 'is_available']
-    autocomplete_fields = ['category', 'color']
-    readonly_fields = ['created_at']
-    date_hierarchy = 'created_at'
+    list_display = ['id', 'name', 'price', 'discount', 'category', 'is_available']
+    search_fields = ['name', 'category__name']
+    list_filter = ['category', 'is_available']
     ordering = ['id']
-
-    fieldsets = (
-        (None, {
-            'fields': (
-                'name', 'price', 'short_description', 'long_description', 
-                'discount', 'image', 'is_available', 
-                'availability', 'quantity', 'category', 'color', 'age_range', 'sku'
-            )
-        }),
-    )
-
-    actions = ['make_available', 'make_unavailable']
     inlines = [ProductImageStackedInline]
 
-    @admin.action(description=_("Tanlangan mahsulotlarni mavjud deb belgilash"))
-    def make_available(self, request, queryset):
-        queryset.update(is_available=True)
+    def get_price(self, obj):
+        return obj.get_price()
 
-    @admin.action(description=_("Tanlangan mahsulotlarni mavjud emas deb belgilash"))
-    def make_unavailable(self, request, queryset):
-        queryset.update(is_available=False)
-
+    get_price.short_description = _('Price')
 
 @admin.register(BannerModel)
 class BannerModelAdmin(MyTranslationAdmin):

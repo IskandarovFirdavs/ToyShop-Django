@@ -1,568 +1,121 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create Account - Firdavs O'yinchoqlar Do'koni</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <title>Register</title>
     <style>
-      /* Registration page specific styles */
-      .register-section {
-        min-height: 100vh;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
         display: flex;
-        align-items: center;
         justify-content: center;
-        padding: 40px 0;
-        background-color: var(--background-color);
-        background-image: radial-gradient(
-          circle at 10% 20%,
-          rgba(var(--primary-rgb), 0.03) 0%,
-          rgba(var(--primary-rgb), 0.01) 90%
-        );
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
       }
 
-      .auth-container {
-        max-width: 500px;
-        width: 100%;
-        margin: 0 auto;
-        padding: 40px;
-        background-color: var(--card-background);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px var(--shadow-color);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        animation: fadeIn 0.5s ease-out;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .auth-container:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px var(--shadow-color);
-      }
-
-      .auth-header {
-        text-align: center;
-        margin-bottom: 35px;
-      }
-
-      .auth-header h1 {
-        font-size: 2rem;
-        margin-bottom: 12px;
-        color: var(--text-color);
-        font-weight: 600;
-      }
-
-      .auth-header p {
-        color: var(--text-light);
-        font-size: 1.05rem;
-      }
-
-      .auth-form .form-group {
-        margin-bottom: 24px;
-      }
-
-      .form-label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 500;
-        color: var(--text-color);
-      }
-
-      .form-control {
-        width: 100%;
-        padding: 14px 16px;
-        border: 1.5px solid var(--border-color);
+      .form-container {
+        background-color: white;
         border-radius: 8px;
-        background-color: var(--background-color);
-        color: var(--text-color);
-        font-family: "Quicksand", sans-serif;
-        font-size: 1rem;
-        transition: all 0.3s ease;
-      }
-
-      .form-control:focus {
-        outline: none;
-        border-color: var(--primary-color);
-        box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
-      }
-
-      /* Phone number input styling */
-      .phone-input-container {
-        display: flex;
-        align-items: center;
-      }
-
-      .country-code {
-        display: flex;
-        align-items: center;
-        padding: 0 15px;
-        background-color: var(--background-color);
-        border: 1.5px solid var(--border-color);
-        border-right: none;
-        border-radius: 8px 0 0 8px;
-        color: var(--text-color);
-        font-weight: 500;
-        height: 50px;
-      }
-
-      .phone-input {
-        flex: 1;
-        border-radius: 0 8px 8px 0;
-      }
-
-      .toggle-password {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: none;
-        border: none;
-        color: var(--text-light);
-        cursor: pointer;
-        transition: color 0.3s ease;
-      }
-
-      .toggle-password:hover {
-        color: var(--primary-color);
-      }
-
-      .register-btn {
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
         width: 100%;
-        padding: 14px;
-        background-color: var(--primary-color);
+        max-width: 400px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #4a90e2;
+        box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #4a90e2;
         color: white;
         border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 1rem;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
         cursor: pointer;
-        transition: all 0.3s ease;
-        font-family: "Quicksand", sans-serif;
+        margin-top: 10px;
       }
 
-      .register-btn:hover {
-        background-color: var(--primary-color);
-        opacity: 0.9;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.2);
+      button:hover {
+        background-color: #3a80d2;
       }
 
-      .register-btn:active {
-        transform: translateY(0);
-      }
-
-      .auth-footer {
+      .login-link {
         text-align: center;
-        margin-top: 25px;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #666;
       }
 
-      .auth-footer p {
-        color: var(--text-color);
-      }
-
-      .signin-link {
-        color: var(--primary-color);
+      .login-link a {
+        color: #4a90e2;
         text-decoration: none;
-        font-weight: 600;
-        transition: color 0.3s ease;
       }
 
-      .signin-link:hover {
+      .login-link a:hover {
         text-decoration: underline;
-      }
-
-      .brand-logo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 25px;
-      }
-
-      .brand-logo i {
-        font-size: 2.5rem;
-        color: var(--primary-color);
-        margin-right: 10px;
-      }
-
-      .brand-logo span {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--primary-color);
-      }
-
-      .terms-checkbox {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 25px;
-      }
-
-      .terms-checkbox input {
-        margin-top: 5px;
-        margin-right: 12px;
-        width: 18px;
-        height: 18px;
-        accent-color: var(--primary-color);
-      }
-
-      .terms-checkbox label {
-        color: var(--text-light);
-        font-size: 0.95rem;
-        line-height: 1.5;
-      }
-
-      .terms-link {
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 500;
-      }
-
-      .terms-link:hover {
-        text-decoration: underline;
-      }
-
-      .form-row {
-        display: flex;
-        gap: 15px;
-      }
-
-      .form-row .form-group {
-        flex: 1;
-      }
-
-      /* Responsive styles */
-      @media (max-width: 576px) {
-        .auth-container {
-          padding: 30px 20px;
-          margin: 0 15px;
-        }
-
-        .auth-header h1 {
-          font-size: 1.8rem;
-        }
-
-        .form-row {
-          flex-direction: column;
-          gap: 0;
-        }
-      }
-
-      /* Dark mode enhancements */
-      [data-theme="dark"] .auth-container {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      }
-
-      /* Gender-specific styles */
-      [data-gender="female"] .auth-container {
-        border-radius: 20px;
-        border-top: 3px solid var(--primary-color);
-      }
-
-      [data-gender="female"] .register-btn {
-        border-radius: 25px;
-      }
-
-      [data-gender="female"] .form-control {
-        border-radius: 12px;
-      }
-
-      [data-gender="female"] .country-code {
-        border-radius: 12px 0 0 12px;
-      }
-
-      [data-gender="female"] .phone-input {
-        border-radius: 0 12px 12px 0;
       }
     </style>
   </head>
   <body>
-    <!-- Navbar Placeholder -->
-    <div id="navbar-placeholder"></div>
+    <div class="form-container">
+      <h1>Create Account</h1>
 
-    <!-- Register Section -->
-    <section class="register-section">
-      <div class="container">
-        <div class="auth-container">
-          <div class="brand-logo">
-            <i class="fas fa-gamepad"></i>
-            <span>Firdavs Toys</span>
-          </div>
+      <div class="form-container">
+        <h1>Create Account</h1>
 
-          <div class="auth-header">
-            <h1>Create an Account</h1>
-            <p>Join our community to enjoy exclusive benefits</p>
-          </div>
+        <form
+          action="{% url 'users:register' %}"
+          method="post"
+          autocomplete="off"
+        >
+          {% csrf_token %} {{ form.as_p }}
 
-          <form
-            class="auth-form"
-            method="post"
-            action="{% url 'users:register' %}"
-          >
-            {% csrf_token %} {% if form.non_field_errors %}
-            <div
-              class="alert alert-danger"
-              style="
-                background-color: #f8d7da;
-                color: #721c24;
-                padding: 12px;
-                border-radius: 8px;
-                margin-bottom: 20px;
-              "
-            >
-              {% for error in form.non_field_errors %} {{ error }} {% endfor %}
-            </div>
-            {% endif %}
+          <button type="submit">Register</button>
+        </form>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name" class="form-label">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  class="form-control"
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="surname" class="form-label">Surname</label>
-                <input
-                  type="text"
-                  name="surname"
-                  id="surname"
-                  class="form-control"
-                  placeholder="Your surname"
-                  required
-                />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="phone_number" class="form-label">Phone Number</label>
-              <div class="phone-input-container">
-                <div class="country-code">+998</div>
-                <input
-                  type="tel"
-                  id="phone_number"
-                  name="phone_number"
-                  class="form-control phone-input"
-                  placeholder="90 123 45 67"
-                  pattern="[0-9]{2} [0-9]{3} [0-9]{2} [0-9]{2}"
-                  maxlength="12"
-                  required
-                />
-              </div>
-              <small
-                style="
-                  color: var(--text-light);
-                  margin-top: 5px;
-                  display: block;
-                "
-                >Format: 90 123 45 67</small
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="password" class="form-label">Password</label>
-              <div style="position: relative">
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  class="form-control"
-                  placeholder="Create a password"
-                  required
-                />
-                <button type="button" class="toggle-password">
-                  <i class="far fa-eye"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="check_password" class="form-label"
-                >Confirm Password</label
-              >
-              <div style="position: relative">
-                <input
-                  type="password"
-                  name="check_password"
-                  id="check_password"
-                  class="form-control"
-                  placeholder="Confirm your password"
-                  required
-                />
-                <button type="button" class="toggle-password">
-                  <i class="far fa-eye"></i>
-                </button>
-              </div>
-            </div>
-
-            <div class="terms-checkbox">
-              <input type="checkbox" id="terms" name="terms" required />
-              <label for="terms">
-                I agree to the
-                <a href="#" class="terms-link">Terms of Service</a> and
-                <a href="#" class="terms-link">Privacy Policy</a>.
-              </label>
-            </div>
-
-            <button type="submit" class="register-btn">Create Account</button>
-          </form>
-
-          <div class="auth-footer">
-            <p>
-              Already have an account?
-              <a href="{% url 'users:login' %}" class="signin-link">Sign In</a>
-            </p>
-          </div>
+        <div class="login-link">
+          Already have an account? <a href="{% url 'users:login' %}">Login</a>
         </div>
       </div>
-    </section>
-
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-
-    <script>
-      // Load navbar and footer
-      fetch("navbar.html")
-        .then((response) => response.text())
-        .then((data) => {
-          const parser = new DOMParser();
-          const navbarDoc = parser.parseFromString(data, "text/html");
-          const navbarContent = navbarDoc.querySelector(".navbar");
-          document
-            .getElementById("navbar-placeholder")
-            .appendChild(navbarContent);
-
-          // Execute navbar scripts
-          const scripts = navbarDoc.querySelectorAll("script");
-          scripts.forEach((script) => {
-            const newScript = document.createElement("script");
-            if (script.src) {
-              newScript.src = script.src;
-            } else {
-              newScript.textContent = script.textContent;
-            }
-            document.body.appendChild(newScript);
-          });
-        });
-
-      fetch("footer.html")
-        .then((response) => response.text())
-        .then((data) => {
-          const parser = new DOMParser();
-          const footerDoc = parser.parseFromString(data, "text/html");
-          const footerContent = footerDoc.querySelector(".footer");
-          document
-            .getElementById("footer-placeholder")
-            .appendChild(footerContent);
-        });
-
-      // Password visibility toggle
-      const togglePasswordButtons =
-        document.querySelectorAll(".toggle-password");
-      togglePasswordButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const input = button.parentElement.querySelector("input");
-          const icon = button.querySelector("i");
-
-          if (input.type === "password") {
-            input.type = "text";
-            icon.classList.replace("fa-eye", "fa-eye-slash");
-          } else {
-            input.type = "password";
-            icon.classList.replace("fa-eye-slash", "fa-eye");
-          }
-        });
-      });
-
-      // Phone number formatting
-      const phoneInput = document.getElementById("phone_number");
-      phoneInput.addEventListener("input", function (e) {
-        let value = e.target.value.replace(/\D/g, ""); // Remove non-digits
-
-        if (value.length > 0) {
-          // Format as XX XXX XX XX
-          if (value.length <= 2) {
-            value = value;
-          } else if (value.length <= 5) {
-            value = value.slice(0, 2) + " " + value.slice(2);
-          } else if (value.length <= 7) {
-            value =
-              value.slice(0, 2) +
-              " " +
-              value.slice(2, 5) +
-              " " +
-              value.slice(5);
-          } else {
-            value =
-              value.slice(0, 2) +
-              " " +
-              value.slice(2, 5) +
-              " " +
-              value.slice(5, 7) +
-              " " +
-              value.slice(7, 9);
-          }
-        }
-
-        e.target.value = value;
-      });
-
-      // Password matching check
-      const password = document.getElementById("password");
-      const confirmPassword = document.getElementById("check_password");
-
-      confirmPassword.addEventListener("input", function () {
-        if (this.value === password.value) {
-          this.style.borderColor = "#2ecc71";
-        } else {
-          this.style.borderColor = "var(--border-color)";
-        }
-      });
-
-      // Input field focus effects
-      const formControls = document.querySelectorAll(".form-control");
-      formControls.forEach((input) => {
-        input.addEventListener("focus", function () {
-          this.style.borderColor = "var(--primary-color)";
-          this.style.boxShadow = "0 0 0 3px rgba(var(--primary-rgb), 0.1)";
-        });
-
-        input.addEventListener("blur", function () {
-          this.style.borderColor = "var(--border-color)";
-          this.style.boxShadow = "none";
-
-          // Keep green border for matching passwords
-          if (
-            input.id === "check_password" &&
-            input.value === password.value &&
-            input.value !== ""
-          ) {
-            input.style.borderColor = "#2ecc71";
-          }
-        });
-      });
-    </script>
+    </div>
   </body>
 </html>

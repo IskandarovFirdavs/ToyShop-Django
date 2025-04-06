@@ -8,16 +8,16 @@ from users.forms import RegistrationForm, LoginForm, UserUpdateForm
 
 def registration_view(request):
     if request.method == "POST":
-        form = RegistrationForm(request.POST)
+        form = RegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("products:list")
-
+            return redirect("products:home")
     else:
         form = RegistrationForm()
 
     return render(request, 'register.html', {'form': form})
+
 
 
 def login_view(request):
@@ -32,7 +32,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
-                return redirect("products:list")
+                return redirect("products:home")
 
     else:
         form = LoginForm()

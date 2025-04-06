@@ -2,6 +2,17 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, DetailView
 from .models import ProductModel, BannerModel
 from .forms import CommentForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView
+
+
 
 class Home(TemplateView):
     template_name = 'index.html'
@@ -18,9 +29,7 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = 'about.html'
     
-class Cart(TemplateView):
-    template_name = 'cart.html'
-    
+
 class Order_history(TemplateView):
     template_name = 'order_history.html'
     
@@ -75,9 +84,58 @@ class ProductDetailView(DetailView):
         return self.render_to_response(context)
 
     
-    
-class Wishlist(TemplateView):
+class WishlistListView(LoginRequiredMixin, ListView):
     template_name = 'wishlist.html'
-    
+    context_object_name = 'products'
+    paginate_by = 9
 
+    def get_queryset(self):
+        return self.request.user.wishlist.order_by('-pk')
+
+
+@login_required
+def create_wishlist(request, pk):
+    product = get_object_or_404(ProductModel, pk=pk)
+
+    if request.user in product.wishlist.all():
+        product.wishlist.remove(request.user)
+
+    else:
+        product.wishlist.add(request.user)
+
+    product.save()
+
+    return redirect(request.GET.get('next', '/'))
+
+@login_required
+def add_all_to_cart(request):
+    wishlist_items = request.user.wishlist.all()
     
+    for product in wishlist_items:
+        request.user.cart.add(product)
+
+    return redirect('wishlist')
+
+
+class CartListView(LoginRequiredMixin, ListView):
+    template_name = 'cart.html'
+    context_object_name = 'products'
+    paginate_by = 5
+
+    def get_queryset(self):
+        return self.request.user.cart.order_by('-pk')
+
+
+@login_required
+def create_cart(request, pk):
+    product = get_object_or_404(ProductModel, pk=pk)
+
+    if request.user in product.cart.all():
+        product.cart.remove(request.user)
+
+    else:
+        product.cart.add(request.user)
+
+    product.save()
+
+    return redirect(request.GET.get('next', '/'))

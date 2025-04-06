@@ -2,9 +2,12 @@
 <!--  -->
 {% load static %}
 <!--  -->
+{% load mytags %}
+<!--  -->
 {% block title %}Shop{% endblock %}
 <!--  -->
 {% block extra_css %}
+<!--  -->
 <style>
   /* Responsive styles directly in the template */
   .shop-layout {
@@ -97,17 +100,15 @@
         <div class="filter-content" id="filterContent">
           <div class="filter-section" style="margin-bottom: 30px">
             <h3 style="margin-bottom: 15px">Categories</h3>
-            {% for catigory in catigories %}
-            <ul style="list-style: none; padding: 0">
-              <li style="margin-bottom: 10px">
-                <label
-                  style="display: flex; align-items: center; cursor: pointer"
-                >
-                  <input type="checkbox" style="margin-right: 10px" />
-                  {{ catogory.name }}
-                </label>
-              </li>
-            </ul>
+            {% for category in categories %}
+            <li style="margin-bottom: 10px">
+              <label
+                style="display: flex; align-items: center; cursor: pointer"
+              >
+                <input type="checkbox" style="margin-right: 10px" />
+                {{ category.name }}
+              </label>
+            </li>
             {% endfor %}
           </div>
 
@@ -217,18 +218,33 @@
             <div class="card-body">
               <h3 class="card-title">{{product.name}}</h3>
               <p class="card-text">{{product.short_description}}</p>
-              <div class="card-price">{{product.price}} sum</div>
-              <div style="display: flex; gap: 10px">
+              <div class="card-price">
+                {{ product.get_price }} UZS    
+                {% if product.is_discounted %}
+                    | <strong><strike>{{ product.price }} UZS</strike></strong>
+                {% endif %}
+            </div>
+            
+
+              <!-- Replaced buttons with the unordered list -->              <ul class="list-unstyled">
                 <a
-                  href="{% url 'products:product' pk=product.pk  %}"
-                  class="btn btn-outline"
-                  style="flex: 1"
-                  >View</a
+                  class="btn btn-success text-white"
+                  href="{% url 'products:wishlist-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}"
                 >
-                <button class="btn btn-primary" style="flex: 1">
-                  Add to Cart
-                </button>
-              </div>
+                  <i class="{% get_heart_icon request product %}"></i>
+                </a>
+                <a
+                  class="btn btn-success text-white mt-2"
+                  href="{% url 'products:product' pk=product.pk %}"
+                >
+                  <i class="far fa-eye"></i>
+                </a>
+                <a
+                  class="btn btn-success text-white mt-2"
+                  href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}"
+                >
+                  <i class="fas fa-cart-plus"></i>
+                </a>
             </div>
           </div>
           {% endfor %}
