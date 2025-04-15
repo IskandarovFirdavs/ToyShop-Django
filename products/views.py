@@ -1,16 +1,11 @@
-from django.shortcuts import render, redirect
-from django.views.generic import TemplateView, DetailView
-from .models import ProductModel, BannerModel
+from django.shortcuts import redirect
+from django.views.generic import TemplateView, DetailView, ListView
+from .models import ProductModel, BannerModel, CategoryModel, AgeModel
 from .forms import CommentForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView
 
 
 
@@ -33,27 +28,71 @@ class About(TemplateView):
 class Order_history(TemplateView):
     template_name = 'order_history.html'
     
-class ProductListView(TemplateView):
+
+class ProductListView(ListView):
     model = ProductModel
     template_name = 'shop.html'
     context_object_name = 'products'
-    paginate_by = 9
+    paginate_by = 1
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['products'] = ProductModel.objects.all() 
         context['discounts'] = ProductModel.objects.order_by('-discount')[:3]
         context['banners'] = BannerModel.objects.filter(is_active=True)[:3]
+        context['categories'] = CategoryModel.objects.all()    
+        context['selected_categories'] = self.request.GET.getlist('category')
+        context['age_ranges'] = AgeModel.objects.all()     
+        context['selected_age_ranges'] = self.request.GET.getlist('age_ranges')
+
         return context
 
-    def get_queryset(self):
-        qs = ProductModel.objects.all()
+    def get_queryset(self):    
+        qs = ProductModel.objects.all()  
 
         q = self.request.GET.get('q')
         if q:
             qs = qs.filter(name__icontains=q)
+ 
+ 
+        #  Category filter
+        cat = self.request.GET.get('cat')
+        if cat:
+            qs = qs.filter(category__id=cat)
+
+        # sort
+        sort = self.request.GET.get('sort')
+        if sort:
+            if sort == 'price':
+                qs = sorted(qs, key=lambda i: i.get_price())
+            elif sort == '-price':
+                qs = sorted(qs, key=lambda i: i.get_price(), reverse=True)
+            elif sort == '-created_at':
+                qs = sorted(qs, key=lambda i: i.created_at(), reverse=True)
+            
+
+
+        #  Age range filter
+        age_ranges = self.request.GET.get('age_ranges')
+        if age_ranges:
+            qs = qs.filter(agerange__id=age_ranges)
+
+        #  Price filter
+        min_price = self.request.GET.get('min_price')
+        max_price = self.request.GET.get('max_price')
+        if min_price and max_price:
+            qs = qs.filter(price__gte=min_price, price__lte=max_price)
+
+        # ↕ Sorting
+        sort = self.request.GET.get('sort')
+        if sort == 'price_low':
+            qs = qs.order_by('price')
+        elif sort == 'price_high':
+            qs = qs.order_by('-price')
+        elif sort == '-pk':
+            qs = qs.order_by('-pk')  
 
         return qs
+
 
 
 

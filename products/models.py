@@ -16,6 +16,17 @@ class CategoryModel(models.Model):
         verbose_name_plural = _("Categories")
 
 
+class AgeModel(models.Model):
+    name = models.CharField(max_length=255, verbose_name=("name"))
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = ("Age")
+        verbose_name_plural = ("Ages")
+
+
 class ColorModel(models.Model):
     name = models.CharField(max_length=10, null=True, blank=True, verbose_name=_("name"))
 
@@ -37,17 +48,21 @@ class ProductModel(models.Model):
     long_description = models.TextField(verbose_name=_("long_description"))
     image = models.ImageField(upload_to='products/', verbose_name=_("image"))
     is_available = models.BooleanField(default=True, verbose_name=_("is_available"))
-
+    agerange = models.ManyToManyField(AgeModel, related_name='products', verbose_name=("age_range"))
     wishlist = models.ManyToManyField(
         User,
         related_name='wishlist',
-        verbose_name=_("wishlist")
+        verbose_name=_("wishlist"),
+        null=True,
+        blank=True,
     )
    
     cart = models.ManyToManyField(
         User,
         related_name='cart',
-        verbose_name=_("cart")
+        verbose_name=_("cart"),
+         null=True,
+        blank=True,
     )
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("created_at"))

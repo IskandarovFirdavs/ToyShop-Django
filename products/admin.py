@@ -1,6 +1,6 @@
 from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin
-from .models import CategoryModel, ColorModel, ProductModel, BannerModel, CommentModel, ProductImageModel
+from .models import CategoryModel, ColorModel, ProductModel, BannerModel, CommentModel, ProductImageModel, AgeModel
 from django.utils.translation import gettext_lazy as _
 
 
@@ -39,7 +39,7 @@ class ProductImageStackedInline(admin.TabularInline):
 
 @admin.register(ProductModel)
 class ProductModelAdmin(MyTranslationAdmin):
-    list_display = ['id', 'name', 'price', 'discount', 'category', 'is_available']
+    list_display = ['id', 'name', 'price', 'discount', 'category', 'is_available', 'created_at']
     search_fields = ['name', 'category__name']
     list_filter = ['category', 'is_available']
     ordering = ['id']
@@ -65,3 +65,11 @@ class CommentModelAdmin(admin.ModelAdmin):
     list_filter = ['created_at']
     date_hierarchy = 'created_at'
     ordering = ['-created_at']
+
+
+@admin.register(AgeModel)
+class AgeModelAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    search_fields = ['name']
+    list_filter = ['name']
+    ordering = ['id']

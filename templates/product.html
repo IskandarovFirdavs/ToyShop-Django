@@ -87,7 +87,15 @@ Details{% endblock %} {% block content %}
             margin-bottom: 20px;
           "
         >
+          {% if product.get_price %}
+          <!--  -->
+          {{ product.get_price }} sum
+          <!--  -->
+          {% else %}
+          <!--  -->
           {{ product.price }} sum
+          <!--  -->
+          {% endif %}
         </div>
         <div
           class="product-description"
@@ -97,16 +105,22 @@ Details{% endblock %} {% block content %}
         </div>
         <div class="product-meta" style="margin-bottom: 30px">
           <div style="display: flex; margin-bottom: 10px">
-            <span style="width: 100px; font-weight: 500">SKU:</span>
-            <span style="color: var(--text-light)">{{product.sku}}</span>
-          </div>
-          <div style="display: flex; margin-bottom: 10px">
             <span style="width: 100px; font-weight: 500">Category:</span>
             <span style="color: var(--text-light)">{{product.category}}</span>
           </div>
           <div style="display: flex; margin-bottom: 10px">
             <span style="width: 100px; font-weight: 500">Age Range:</span>
-            <span style="color: var(--text-light)">{{product.age_range}}</span>
+            <span style="color: var(--text-light)"></span>
+              {% for age in product.agerange.all %} 
+              <!--  -->
+              {{ age.name }} ages
+              <!--  -->
+              {% if not forloop.last %}, 
+              <!--  -->
+              {% endif %}
+              <!--  -->
+              {% endfor %}</span
+            >
           </div>
           <div style="display: flex; margin-bottom: 10px">
             <span style="width: 100px; font-weight: 500">Availability:</span>
@@ -277,7 +291,12 @@ Details{% endblock %} {% block content %}
             <div class="card-body">
               <h3 class="card-title">{{product.name}}</h3>
               <p class="card-text">{{product.short_description}}</p>
-              <div class="card-price">{{product.price}} sum</div>
+
+              <div class="card-price">
+                {% if not product.get_price %}{{product.price}} sum {% else %}
+                {{product.get_price}}{% endif %}
+              </div>
+
               <a
                 href="{% url 'products:product' pk=product.pk %}"
                 class="btn btn-outline"
@@ -364,7 +383,7 @@ Details{% endblock %} {% block content %}
           content = `
           <h3 style="margin-bottom: 20px">Additional Information</h3>
           <p style="margin-bottom: 15px; color: var(--text-light)">
-            {{ product.additional_information }}
+            {{ product.long_description }}
           </p>
         `;
         } else if (index === 1) {

@@ -72,6 +72,338 @@
       gap: 15px;
     }
   }
+  a:hover{
+    cursor: pointer;
+  }
+  .a-active{
+    color: var(--text-color);
+  }
+
+
+  /* Refined Product Grid - adjusted to match original size */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+  }
+  
+  /* Elegant Card Design - adjusted dimensions */
+  .product-card {
+    position: relative;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px var(--shadow-color);
+  }
+  
+  /* Sale Card Specific Styling */
+  .product-card.on-sale {
+    border: 1px solid rgba(var(--primary-color-rgb, 0, 0, 0), 0.1);
+  }
+  
+  /* Image Container - adjusted ratio */
+  .card-image-container {
+    position: relative;
+    padding-top: 75%; /* 4:3 Aspect Ratio to match original */
+    overflow: hidden;
+    background-color: var(--background-color);
+  }
+  
+  .card-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+  }
+  
+  .product-card:hover .card-img {
+    transform: scale(1.05);
+  }
+  
+  /* Premium Ribbon - slightly smaller */
+  .ribbon-wrapper {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    z-index: 5;
+    overflow: hidden;
+    width: 90px;
+    height: 90px;
+  }
+  
+  .ribbon {
+    position: absolute;
+    top: 15px;
+    right: -25px;
+    transform: rotate(45deg);
+    width: 110px;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    text-transform: uppercase;
+  }
+  
+  .ribbon:before, .ribbon:after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    border-top: 5px solid var(--primary-color);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    opacity: 0.7;
+  }
+  
+  .ribbon:before {
+    left: 0;
+  }
+  
+  .ribbon:after {
+    right: 0;
+  }
+  
+  /* Elegant Discount Circle - slightly smaller */
+  .discount-circle {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 0, 0), 0.4);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(var(--primary-color-rgb, 0, 0, 0), 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 0, 0), 0);
+    }
+  }
+  
+  .discount-percent {
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  
+  /* Card Content - adjusted padding */
+  .card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    line-height: 1.4;
+  }
+  
+  .card-description {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Sophisticated Price Display */
+  .price-section {
+    margin-top: auto;
+    margin-bottom: 15px;
+  }
+  
+  .price-display {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .current-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary-color);
+  }
+  
+  .original-price {
+    font-size: 14px;
+    color: var(--text-light);
+    text-decoration: line-through;
+    position: relative;
+  }
+  
+  .regular-price {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+  }
+  
+  /* Quick Add Button - adjusted padding */
+  .quick-add-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+  
+  .quick-add-btn:hover {
+    background-color: var(--secondary-color);
+    box-shadow: 0 5px 15px var(--shadow-color);
+  }
+  
+  /* Hover Action Buttons - improved icon visibility */
+  .card-actions {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for better contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .product-card:hover .card-actions {
+    opacity: 1;
+  }
+  
+  .action-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  
+  /* Improved icon visibility */
+  .action-btn i {
+    font-size: 16px; /* Larger icon size */
+    color: var(--text-color); /* Ensure good contrast */
+  }
+  
+  .product-card:hover .action-btn {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .product-card:hover .action-btn:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  
+  .product-card:hover .action-btn:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+  
+  .product-card:hover .action-btn:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+  
+  .action-btn:hover {
+    background-color: var(--primary-color);
+    
+    color: white;
+    box-shadow: 0 5px 15px var(--shadow-color);
+  }
+  
+  /* Make icons more visible on hover */
+  .action-btn:hover i {
+    color: white;
+    font-size: 18px; /* Slightly larger on hover */
+  }
+  
+  /* Theme-specific adjustments for female design */
+  [data-gender="female"] .ribbon {
+    border-radius: 0 0 5px 5px;
+  }
+  
+  [data-gender="female"] .discount-circle {
+    border-radius: 12px;
+  }
+  
+  [data-gender="female"] .quick-add-btn {
+    border-radius: 25px;
+  }
+  
+  [data-gender="female"] .action-btn {
+    border-radius: 12px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    
+    .card-content {
+      padding: 12px;
+    }
+    
+    .discount-circle {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .discount-percent {
+      font-size: 12px;
+    }
+  }
 </style>
 {% endblock %} {% block content %}
 <!-- Shop Header -->
@@ -102,60 +434,18 @@
             <h3 style="margin-bottom: 15px">Categories</h3>
             {% for category in categories %}
             <li style="margin-bottom: 10px">
-              <label
-                style="display: flex; align-items: center; cursor: pointer"
-              >
-                <input type="checkbox" style="margin-right: 10px" />
-                {{ category.name }}
-              </label>
+              <a {% if request.GET.cat == category.pk|stringformat:'i' %} class="a-active"{% endif %} onclick="addUrlParameter('cat', '{{category.pk}}')"> {{ category.name }}</a>
             </li>
             {% endfor %}
           </div>
 
           <div class="filter-section" style="margin-bottom: 30px">
             <h3 style="margin-bottom: 15px">Age Range</h3>
-            <ul style="list-style: none; padding: 0">
+              {% for age_range in age_ranges %}
               <li style="margin-bottom: 10px">
-                <label
-                  style="display: flex; align-items: center; cursor: pointer"
-                >
-                  <input type="checkbox" style="margin-right: 10px" />
-                  0-2 Years
-                </label>
+                <a {% if request.GET.age_ranges == age_range.pk|stringformat:'i' %} class="a-active"{% endif %} onclick="addUrlParameter('age_ranges', '{{age_range.pk}}')">{{ age_range }}</a>  
               </li>
-              <li style="margin-bottom: 10px">
-                <label
-                  style="display: flex; align-items: center; cursor: pointer"
-                >
-                  <input type="checkbox" style="margin-right: 10px" />
-                  3-5 Years
-                </label>
-              </li>
-              <li style="margin-bottom: 10px">
-                <label
-                  style="display: flex; align-items: center; cursor: pointer"
-                >
-                  <input type="checkbox" style="margin-right: 10px" />
-                  6-8 Years
-                </label>
-              </li>
-              <li style="margin-bottom: 10px">
-                <label
-                  style="display: flex; align-items: center; cursor: pointer"
-                >
-                  <input type="checkbox" style="margin-right: 10px" />
-                  9-12 Years
-                </label>
-              </li>
-              <li style="margin-bottom: 10px">
-                <label
-                  style="display: flex; align-items: center; cursor: pointer"
-                >
-                  <input type="checkbox" style="margin-right: 10px" />
-                  12+ Years
-                </label>
-              </li>
-            </ul>
+              {% endfor %}
           </div>
 
           <div class="filter-section" style="margin-bottom: 30px">
@@ -174,10 +464,10 @@
               </div>
             </div>
           </div>
-
+          <a href="{% url 'products:shop' %}" >
           <button class="btn btn-primary" style="width: 100%">
-            Apply Filters
-          </button>
+            Clear Filters
+          </button></a>
         </div>
       </div>
 
@@ -193,155 +483,141 @@
           "
         >
           <div>
-            <p>Showing {{products.count}} of {{products.all.count}} products</p>
+            <p>Showing {{ page_obj.start_index }}-{{ page_obj.end_index }} of {{ page_obj.paginator.count }}</p>
           </div>
           <div style="display: flex; align-items: center">
             <label style="margin-right: 10px">Sort by:</label>
-            <select class="form-control" style="width: auto">
-              <option>Featured</option>
-              <option>Price: Low to High</option>
-              <option>Price: High to Low</option>
-              <option>Newest</option>
-              <option>Best Selling</option>
+            <select onchange="addUrlParameter('sort', this.value)" class="form-control" style="width: auto">
+              <option value="">None</option>
+              <option  {% if request.GET.sort == 'price' %} selected {% endif %} value="price">Price: Low to High</option>
+              <option  {% if request.GET.sort == '-price' %} selected {% endif %} value="-price">Price: High to Low</option>
+              <option {% if request.GET.sort == '-pk' %} selected {% endif %}  value="-pk">Newest</option>
             </select>
           </div>
         </div>
 
         <div class="product-grid">
           {% for product in products %}
-          <div class="card">
-            <img
-              src="{{ product.image.url }}"
-              alt="{{ product.name }}"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h3 class="card-title">{{product.name}}</h3>
-              <p class="card-text">{{product.short_description}}</p>
-              <div class="card-price">
-                {{ product.get_price }} UZS    
-                {% if product.is_discounted %}
-                    | <strong><strike>{{ product.price }} UZS</strike></strong>
-                {% endif %}
+          <div class="product-card {% if product.is_discounted %}on-sale{% endif %}">
+            <!-- Premium Sale Ribbon -->
+            {% if product.is_discounted %}
+            <div class="ribbon-wrapper">
+              <div class="ribbon">SALE</div>
             </div>
+            {% endif %}
             
-
-              <!-- Replaced buttons with the unordered list -->              <ul class="list-unstyled">
+            <div class="card-image-container">
+              <img
+                src="{{ product.image.url }}"
+                alt="{{ product.name }}"
+                class="card-img"
+              />
+              
+              <!-- Elegant Discount Circle -->
+              {% if product.is_discounted %}
+              <div class="discount-circle">
+                <span class="discount-percent">-{{ product.discount|floatformat:0 }}%</span>
+              </div>
+              {% endif %}
+              
+              <!-- Hover Action Buttons -->
+              <div class="card-actions">
                 <a
-                  class="btn btn-success text-white"
+                  class="action-btn wishlist-btn"
                   href="{% url 'products:wishlist-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}"
+                  title="Add to Wishlist"
                 >
                   <i class="{% get_heart_icon request product %}"></i>
                 </a>
                 <a
-                  class="btn btn-success text-white mt-2"
+                  class="action-btn view-btn"
                   href="{% url 'products:product' pk=product.pk %}"
+                  title="View Details"
                 >
                   <i class="far fa-eye"></i>
                 </a>
                 <a
-                  class="btn btn-success text-white mt-2"
+                  class="action-btn cart-btn"
                   href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}"
+                  title="Add to Cart"
                 >
                   <i class="fas fa-cart-plus"></i>
                 </a>
+              </div>
+            </div>
+            
+            <div class="card-content">
+              <h3 class="card-title">{{product.name}}</h3>
+              <p class="card-description">{{product.short_description}}</p>
+              
+              <!-- Sophisticated Price Display -->
+              <div class="price-section">
+                {% if product.is_discounted %}
+                  <div class="price-display">
+                    <span class="current-price">{{ product.get_price }} UZS</span>
+                    <span class="original-price">{{ product.price }} UZS</span>
+                  </div>
+                {% else %}
+                  <div class="price-display">
+                    <span class="regular-price">{{ product.get_price }} UZS</span>
+                  </div>
+                {% endif %}
+              </div>
+              
+              <!-- Quick Add Button -->
+              <a 
+                href="{% url 'products:cart-create' pk=product.pk %}?next={{ request.path }}?{{ request.GET.urlencode }}"
+                class="quick-add-btn"
+              >
+                Add to Cart
+              </a>
             </div>
           </div>
           {% endfor %}
         </div>
+        
+       
 
         <!-- Pagination -->
-        <div style="display: flex; justify-content: center; margin-top: 40px">
-          <div
-            class="pagination"
-            style="display: flex; gap: 5px; flex-wrap: wrap"
-          >
-            <a
-              href="#"
-              style="
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 5px;
-                border: 1px solid var(--border-color);
-                text-decoration: none;
-                color: var(--text-color);
-              "
-            >
+        <div style="display: flex; justify-content: center; margin-top: 40px">  
+            {% if page_obj.has_previous %}
+            <a onclick="addUrlParameter('page', '{{ page_obj.previous_page_number }}')" 
+               style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-color);">
               <i class="fas fa-chevron-left"></i>
             </a>
-            <a
-              href="#"
-              style="
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 5px;
-                border: 1px solid var(--border-color);
-                text-decoration: none;
-                color: white;
-                background-color: var(--primary-color);
-              "
-              >1</a
-            >
-            <a
-              href="#"
-              style="
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 5px;
-                border: 1px solid var(--border-color);
-                text-decoration: none;
-                color: var(--text-color);
-              "
-              >2</a
-            >
-            <a
-              href="#"
-              style="
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 5px;
-                border: 1px solid var(--border-color);
-                text-decoration: none;
-                color: var(--text-color);
-              "
-              >3</a
-            >
-            <a
-              href="#"
-              style="
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 5px;
-                border: 1px solid var(--border-color);
-                text-decoration: none;
-                color: var(--text-color);
-              "
-            >
+            {% endif %}
+        
+            {% for page in page_obj.paginator.page_range %}
+            <a class="page-link {% if page == page_obj.number %}active{% endif %}" 
+               onclick="addUrlParameter('page', '{{page}}')"
+               style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-color);">
+              {{ page }}
+            </a>
+            {% endfor %}
+        
+            {% if page_obj.has_next %}
+            <a onclick="addUrlParameter('page', '{{ page_obj.next_page_number }}')"   
+               style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 5px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-color);">
               <i class="fas fa-chevron-right"></i>
             </a>
-          </div>
+            {% endif %}
         </div>
+        
       </div>
     </div>
   </div>
 </section>
 {% endblock %} {% block extra_js %}
 <script>
+
+  // add Url Parametr
+  function addUrlParameter(name, value) {
+    let searchParams = new URLSearchParams(window.location.search);
+    searchParams.set(name, value);
+    window.location.search = searchParams.toString();
+  }
+
+
   // Simple filter toggle function
   function toggleFilters() {
     var filterContent = document.getElementById("filterContent");

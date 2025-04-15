@@ -23,30 +23,49 @@
 
         <ul class="navbar-menu">
           <li class="navbar-item">
-            <a href="{% url 'products:home' %}" class="navbar-link active"
-              >Home</a
+            <a
+              href="{% url 'products:home' %}"
+              class="navbar-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+            >
+              Home</a
             >
           </li>
           <li class="navbar-item">
-            <a href="{% url 'products:shop' %}" class="navbar-link">Shop</a>
+            <a
+              href="{% url 'products:shop' %}"
+              class="navbar-link {% if request.resolver_match.url_name == 'shop' %}active{% endif %}"
+              >Shop</a
+            >
           </li>
           <li class="navbar-item">
-            <a href="{% url 'products:about' %}" class="navbar-link">About</a>
+            <a
+              href="{% url 'products:about' %}"
+              class="navbar-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+              >About</a
+            >
           </li>
           <li class="navbar-item">
-            <a href="{% url 'contact:contact' %}" class="navbar-link"
+            <a
+              href="{% url 'contact:contact' %}"
+              class="navbar-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}"
               >Contact</a
             >
           </li>
 
           <!-- Mobile-only menu items -->
           <li class="navbar-item mobile-only">
-            <a href="{% url 'products:wishlist' %}" class="navbar-link">
+            <a
+              href="{% url 'products:wishlist' %}"
+              class="navbar-link {% if request.resolver_match.url_name == 'wishlist' %}active{% endif %}"
+            >
               <i class="far fa-heart"></i> Wishlist
             </a>
           </li>
           <li class="navbar-item mobile-only">
-            <a href="{% url 'products:cart' %}" class="navbar-link">
+            <a
+              href="{% url 'products:cart' %}"
+              class="navbar-link {% if request.resolver_match.url_name == 'cart' %}active{% endif %}"
+            >
               <i class="fas fa-shopping-cart"></i> Cart
             </a>
           </li>
@@ -128,19 +147,20 @@
       <!-- Mobile Search Overlay (hidden by default) -->
       <div class="search-overlay" id="searchOverlay">
         <div class="container">
-          <div class="search-form">
+          <form action="{% url 'products:shop' %}" class="search-form">
             <input
+              name="q"
               type="text"
               class="form-control"
               placeholder="Search for products..."
             />
-            <button type="button" class="btn-search">
+            <button type="submit" class="btn-search">
               <i class="fas fa-search"></i>
             </button>
             <button type="button" class="btn-close-search" id="closeSearch">
               <i class="fas fa-times"></i>
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </nav>
